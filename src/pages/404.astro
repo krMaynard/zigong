@@ -4,7 +4,33 @@ import Hero from '../components/Hero.astro';
 ---
 
 <BaseLayout title="Page not found" accent="lantern">
-  <Hero eyebrow="404" title="Lost in the lantern park" tagline="This page wandered off into the dark. Let's get you back to the light.">
-    <a class="btn btn-primary" href="/">Home 🏮</a>
+  <Hero
+    eyebrow="404"
+    title="Lost in the lantern park"
+    tagline="This page wandered off into the dark. Let's get you back to the light."
+  >
+    <a class="btn btn-primary" id="home-link" href="/">Home 🏮</a>
   </Hero>
 </BaseLayout>
+
+<script is:inline>
+  // GitHub Pages serves one static /404.html for every unknown path, so localize
+  // it on the client from the URL's locale prefix (/zh/, /ja/, /ko/).
+  (function () {
+    var seg = window.location.pathname.split('/')[1];
+    var L = {
+      zh: { lang: 'zh-CN', doc: '页面未找到 · 自贡', title: '迷失在彩灯园里', tagline: '这个页面溜进了黑暗之中。让我们带你回到光亮处。', home: '首页 🏮' },
+      ja: { lang: 'ja', doc: 'ページが見つかりません · 自貢', title: 'ランタンの庭で迷子に', tagline: 'このページは暗がりへ迷い込んでしまいました。光のある場所へ戻りましょう。', home: 'ホーム 🏮' },
+      ko: { lang: 'ko', doc: '페이지를 찾을 수 없습니다 · 쯔궁', title: '등불 정원에서 길을 잃었습니다', tagline: '이 페이지는 어둠 속으로 사라졌습니다. 빛이 있는 곳으로 모셔다 드릴게요.', home: '홈 🏮' },
+    };
+    var t = L[seg];
+    if (!t) return;
+    document.documentElement.setAttribute('lang', t.lang);
+    document.title = t.doc;
+    var set = function (sel, text) { var el = document.querySelector(sel); if (el) el.textContent = text; };
+    set('.hero-title', t.title);
+    set('.hero-tagline', t.tagline);
+    var home = document.getElementById('home-link');
+    if (home) { home.setAttribute('href', '/' + seg + '/'); home.textContent = t.home; }
+  })();
+</script>

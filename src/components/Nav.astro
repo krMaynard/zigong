@@ -34,18 +34,16 @@ const isActive = (href: string) =>
     </a>
 
     <nav class="primary-nav" aria-label={t('nav.menu')}>
-      <details class="nav-disclosure">
-        <summary class="nav-toggle" aria-label={t('nav.menu')}>
-          <span class="nav-toggle-bar" aria-hidden="true"></span>
-        </summary>
-        <ul class="nav-links">
-          {links.map((l) => (
-            <li>
-              <a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
-            </li>
-          ))}
-        </ul>
-      </details>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label={t('nav.menu')}>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        {links.map((l) => (
+          <li>
+            <a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
     </nav>
 
     <div class="nav-tools">
@@ -84,7 +82,7 @@ const isActive = (href: string) =>
   .brand .lantern { width: 1.3rem; height: 1.7rem; }
   .brand-tld { color: var(--lantern); }
 
-  .primary-nav { margin-left: auto; }
+  .primary-nav { margin-left: auto; display: flex; align-items: center; }
   .nav-links {
     display: flex;
     align-items: center;
@@ -110,13 +108,10 @@ const isActive = (href: string) =>
 
   .nav-tools { display: flex; align-items: center; gap: 0.5rem; }
 
-  /* Disclosure toggle is hidden on desktop; the list shows inline. */
-  .nav-toggle { display: none; }
-  .nav-disclosure > summary { list-style: none; }
-  .nav-disclosure > summary::-webkit-details-marker { display: none; }
+  /* Hamburger button is hidden on desktop; the list shows inline. */
+  .nav-toggle { display: none; background: none; border: none; padding: 0; }
 
   @media (max-width: 920px) {
-    .primary-nav { margin-left: auto; }
     .nav-toggle {
       display: inline-flex;
       align-items: center;
@@ -141,7 +136,10 @@ const isActive = (href: string) =>
     }
     .nav-toggle-bar::before { position: absolute; top: -6px; }
     .nav-toggle-bar::after { position: absolute; top: 6px; }
-    .nav-disclosure[open] .nav-links {
+
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
       position: absolute;
       right: var(--gutter);
       left: var(--gutter);
@@ -155,6 +153,28 @@ const isActive = (href: string) =>
       padding: 0.6rem;
       gap: 0.1rem;
     }
-    .nav-disclosure[open] .nav-links a { display: block; }
+    .nav-links.open a { display: block; }
   }
 </style>
+
+<script is:inline>
+  (function () {
+    var toggle = document.querySelector('.nav-toggle');
+    var links = document.getElementById('nav-links');
+    if (!toggle || !links) return;
+    function setOpen(open) {
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      links.classList.toggle('open', open);
+    }
+    toggle.addEventListener('click', function () {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    // Close the mobile menu after following a link or pressing Escape.
+    links.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  })();
+</script>
