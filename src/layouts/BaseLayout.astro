@@ -65,13 +65,14 @@ const fontHref = `https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;
       })();
     </script>
 
-    <!-- Per-pillar accent override: map data-accent → --accent vars. -->
+    <!-- Per-pillar accent override: map data-accent → --accent vars.
+         --accent-soft is derived from the (theme-adjusted) accent so it works in
+         both light and dark without a separate dark rule. -->
     <style is:inline>
-      [data-accent='salt'] { --accent: var(--jade); --accent-deep: color-mix(in srgb, var(--jade) 78%, black); }
-      [data-accent='dinosaurs'] { --accent: var(--ink-blue); --accent-deep: color-mix(in srgb, var(--ink-blue) 78%, black); }
-      [data-accent='kids'] { --accent: var(--plum); --accent-deep: color-mix(in srgb, var(--plum) 78%, black); }
-      [data-accent='tech'] { --accent: var(--jade); --accent-deep: color-mix(in srgb, var(--jade) 78%, black); }
-      [data-accent='salt'] [data-theme] { --accent-soft: color-mix(in srgb, var(--jade) 14%, transparent); }
+      [data-accent='salt'] { --accent: var(--jade); --accent-deep: color-mix(in srgb, var(--jade) 78%, black); --accent-soft: color-mix(in srgb, var(--jade) 14%, transparent); }
+      [data-accent='dinosaurs'] { --accent: var(--ink-blue); --accent-deep: color-mix(in srgb, var(--ink-blue) 78%, black); --accent-soft: color-mix(in srgb, var(--ink-blue) 14%, transparent); }
+      [data-accent='kids'] { --accent: var(--plum); --accent-deep: color-mix(in srgb, var(--plum) 78%, black); --accent-soft: color-mix(in srgb, var(--plum) 14%, transparent); }
+      [data-accent='tech'] { --accent: var(--jade); --accent-deep: color-mix(in srgb, var(--jade) 78%, black); --accent-soft: color-mix(in srgb, var(--jade) 14%, transparent); }
     </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
