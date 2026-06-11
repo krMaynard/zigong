@@ -1,0 +1,85 @@
+---
+import { switchLocalePath, useTranslations } from '../i18n/utils';
+import { locales, languageNames, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+}
+const { locale, currentPath } = Astro.props;
+const t = useTranslations(locale);
+
+const options = locales.map((l) => ({
+  locale: l,
+  name: languageNames[l],
+  href: switchLocalePath(currentPath, locale, l),
+  current: l === locale,
+}));
+---
+
+<details class="lang-switcher">
+  <summary aria-label={t('lang.label')}>
+    <span class="globe" aria-hidden="true">🌐</span>
+    <span class="lang-current">{languageNames[locale]}</span>
+  </summary>
+  <ul role="list">
+    {options.map((o) => (
+      <li>
+        <a href={o.href} aria-current={o.current ? 'true' : undefined} hreflang={o.locale} lang={o.locale}>
+          {o.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+</details>
+
+<style>
+  .lang-switcher { position: relative; }
+  .lang-switcher > summary {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    background: var(--bg-elevated);
+  }
+  .lang-switcher > summary::-webkit-details-marker { display: none; }
+  .lang-switcher > summary:hover { color: var(--accent-deep); border-color: var(--accent); }
+  .globe { font-size: 1rem; }
+
+  .lang-switcher ul {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.4rem);
+    min-width: 9rem;
+    list-style: none;
+    margin: 0;
+    padding: 0.35rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    z-index: 120;
+  }
+  .lang-switcher a {
+    display: block;
+    padding: 0.45rem 0.7rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  .lang-switcher a:hover { background: var(--accent-soft); color: var(--accent-deep); }
+  .lang-switcher a[aria-current='true'] { color: var(--accent-deep); font-weight: 700; }
+
+  @media (max-width: 520px) {
+    .lang-current { display: none; }
+  }
+</style>

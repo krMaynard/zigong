@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { asLocale, useTranslations, switchLocalePath } from '../i18n/utils';
+import { htmlLang, locales, type Locale } from '../i18n/ui';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Per-pillar accent: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech' */
+  accent?: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech';
+  ogImage?: string;
+}
+
+const locale = asLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const { title, description, accent, ogImage } = Astro.props;
+
+const siteName = t('site.name');
+const pageTitle = title ? `${title} · ${t('site.name')} — zigong.fyi` : `${siteName} — zigong.fyi`;
+const desc = description ?? t('meta.defaultDescription');
+const path = Astro.url.pathname;
+
+// hreflang alternates: same page in every locale, plus x-default → English.
+const alternates = locales.map((l: Locale) => ({
+  hreflang: htmlLang[l],
+  href: new URL(switchLocalePath(path, locale, l), Astro.site).href,
+}));
+const xDefault = new URL(switchLocalePath(path, locale, 'en'), Astro.site).href;
+const canonical = new URL(path, Astro.site).href;
+const ogImageUrl = new URL(ogImage ?? '/og-default.svg', Astro.site).href;
+
+// Locale-appropriate body font (CJK/KR coverage), display font shared.
+const notoByLocale: Record<Locale, string> = {
+  en: 'Noto+Sans:wght@400;600;700',
+  zh: 'Noto+Sans+SC:wght@400;600;700',
+  ja: 'Noto+Sans+JP:wght@400;600;700',
+  ko: 'Noto+Sans+KR:wght@400;600;700',
+};
+const fontHref = `https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=${notoByLocale[locale]}&display=swap`;
+---
+
+<!doctype html>
+<html lang={htmlLang[locale]} data-accent={accent ?? 'lantern'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- No-flash theme: set data-theme before paint. -->
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (!t) {
+            t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+
+    <!-- Per-pillar accent override: map data-accent → --accent vars. -->
+    <style is:inline>
+      [data-accent='salt'] { --accent: var(--jade); --accent-deep: color-mix(in srgb, var(--jade) 78%, black); }
+      [data-accent='dinosaurs'] { --accent: var(--ink-blue); --accent-deep: color-mix(in srgb, var(--ink-blue) 78%, black); }
+      [data-accent='kids'] { --accent: var(--plum); --accent-deep: color-mix(in srgb, var(--plum) 78%, black); }
+      [data-accent='tech'] { --accent: var(--jade); --accent-deep: color-mix(in srgb, var(--jade) 78%, black); }
+      [data-accent='salt'] [data-theme] { --accent-soft: color-mix(in srgb, var(--jade) 14%, transparent); }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href={fontHref} rel="stylesheet" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Social / Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="zigong.fyi" />
+    <meta property="og:title" content={title ?? siteName} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Localized alternates -->
+    {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    <link rel="alternate" hreflang="x-default" href={xDefault} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t('skip.main')}</a>
+    <Nav locale={locale} currentPath={path} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>
