@@ -1,0 +1,97 @@
+---
+import { useTranslations, localizedUrl } from '../i18n/utils';
+import { routes, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const year = new Date().getFullYear();
+
+const footerLinks = [
+  { slug: routes.lantern, label: t('nav.lantern') },
+  { slug: routes.salt, label: t('nav.salt') },
+  { slug: routes.dinosaurs, label: t('nav.dinosaurs') },
+  { slug: routes.kids, label: t('nav.kids') },
+  { slug: routes.tech, label: t('nav.tech') },
+  { slug: routes.visit, label: t('nav.visit') },
+  { slug: routes.about, label: t('nav.about') },
+].map((l) => ({ ...l, href: localizedUrl(locale, l.slug) }));
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="lantern" aria-hidden="true"><span class="bulb"></span></span>
+        <div>
+          <p class="footer-name">{t('site.name')}<span class="footer-tld">.fyi</span></p>
+          <p class="footer-tagline">{t('site.tagline')}</p>
+        </div>
+      </div>
+      <nav class="footer-nav" aria-label={t('nav.menu')}>
+        {footerLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+      </nav>
+    </div>
+
+    <p class="disclaimer" role="note">{t('footer.disclaimer')}</p>
+
+    <p class="footer-meta">
+      <span>© {year} zigong.fyi</span>
+      <span aria-hidden="true">·</span>
+      <span>{t('footer.builtBy')}</span>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: auto;
+    background: var(--bg-subtle);
+    border-top: 1px solid var(--border);
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+  }
+  .footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .footer-brand { display: flex; align-items: center; gap: 0.7rem; }
+  .footer-brand .lantern { width: 1.6rem; height: 2rem; }
+  .footer-name { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--text-strong); margin: 0; }
+  .footer-tld { color: var(--lantern); }
+  .footer-tagline { color: var(--text-muted); font-size: 0.9rem; margin: 0; max-width: 32ch; }
+
+  .footer-nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; }
+  .footer-nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+  .footer-nav a:hover { color: var(--accent-deep); }
+
+  .disclaimer {
+    margin-top: 1.8rem;
+    padding: 1rem 1.2rem;
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius);
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    max-width: none;
+  }
+  .footer-meta {
+    margin-top: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    color: var(--text-faint);
+    font-size: 0.85rem;
+    max-width: none;
+  }
+</style>

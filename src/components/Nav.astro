@@ -1,0 +1,180 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { useTranslations, localizedUrl } from '../i18n/utils';
+import { routes, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+}
+const { locale, currentPath } = Astro.props;
+const t = useTranslations(locale);
+
+const links = [
+  { slug: routes.lantern, label: t('nav.lantern') },
+  { slug: routes.salt, label: t('nav.salt') },
+  { slug: routes.dinosaurs, label: t('nav.dinosaurs') },
+  { slug: routes.kids, label: t('nav.kids') },
+  { slug: routes.tech, label: t('nav.tech') },
+  { slug: routes.visit, label: t('nav.visit') },
+  { slug: routes.about, label: t('nav.about') },
+].map((l) => ({ ...l, href: localizedUrl(locale, l.slug) }));
+
+const homeHref = localizedUrl(locale, routes.home);
+const isActive = (href: string) =>
+  href === homeHref ? currentPath === href : currentPath.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="container nav-inner">
+    <a class="brand" href={homeHref}>
+      <span class="lantern" aria-hidden="true"><span class="bulb"></span></span>
+      <span class="brand-name">{t('site.name')}<span class="brand-tld">.fyi</span></span>
+    </a>
+
+    <nav class="primary-nav" aria-label={t('nav.menu')}>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label={t('nav.menu')}>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        {links.map((l) => (
+          <li>
+            <a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="nav-tools">
+      <LanguageSwitcher locale={locale} currentPath={currentPath} />
+      <ThemeToggle label={t('theme.toggle')} />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 4rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--text-strong);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .brand .lantern { width: 1.3rem; height: 1.7rem; }
+  .brand-tld { color: var(--lantern); }
+
+  .primary-nav { margin-left: auto; display: flex; align-items: center; }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    display: inline-block;
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  .nav-links a:hover { color: var(--accent-deep); background: var(--accent-soft); }
+  .nav-links a[aria-current='page'] { color: var(--accent-deep); background: var(--accent-soft); }
+
+  .nav-tools { display: flex; align-items: center; gap: 0.5rem; }
+
+  /* Hamburger button is hidden on desktop; the list shows inline. */
+  .nav-toggle { display: none; background: none; border: none; padding: 0; }
+
+  @media (max-width: 920px) {
+    .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.6rem;
+      height: 2.6rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      cursor: pointer;
+      background: var(--bg-elevated);
+    }
+    .nav-toggle-bar,
+    .nav-toggle-bar::before,
+    .nav-toggle-bar::after {
+      content: '';
+      display: block;
+      width: 1.2rem;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      position: relative;
+    }
+    .nav-toggle-bar::before { position: absolute; top: -6px; }
+    .nav-toggle-bar::after { position: absolute; top: 6px; }
+
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      position: absolute;
+      right: var(--gutter);
+      left: var(--gutter);
+      top: 4rem;
+      flex-direction: column;
+      align-items: stretch;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      padding: 0.6rem;
+      gap: 0.1rem;
+    }
+    .nav-links.open a { display: block; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var toggle = document.querySelector('.nav-toggle');
+    var links = document.getElementById('nav-links');
+    if (!toggle || !links) return;
+    function setOpen(open) {
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      links.classList.toggle('open', open);
+    }
+    toggle.addEventListener('click', function () {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    // Close the mobile menu after following a link or pressing Escape.
+    links.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  })();
+</script>

@@ -1,0 +1,52 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from './Hero.astro';
+import { asLocale, useTranslations } from '../i18n/utils';
+import type { PageEntry } from '../lib/content';
+
+interface Props {
+  entry: PageEntry;
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const locale = asLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const { title, description, accent, emoji, tagline, sources } = entry.data;
+---
+
+<BaseLayout title={title} description={description} accent={accent}>
+  <Hero eyebrow={emoji} title={title} tagline={tagline} />
+
+  <article class="section">
+    <div class="container">
+      <div class="prose">
+        <Content />
+      </div>
+
+      {sources.length > 0 && (
+        <aside class="sources" aria-label={t('footer.sources')}>
+          <h2 class="sources-title">{t('footer.sources')}</h2>
+          <ul>
+            {sources.map((s) => <li>{s}</li>)}
+          </ul>
+        </aside>
+      )}
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .sources {
+    max-width: var(--container-narrow);
+    margin-top: 3rem;
+    padding: 1.2rem 1.4rem;
+    border-top: 2px solid var(--border);
+    color: var(--text-faint);
+    font-size: 0.85rem;
+  }
+  .sources-title { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .sources ul { padding-left: 1.2rem; }
+  .sources a { color: var(--text-muted); }
+</style>

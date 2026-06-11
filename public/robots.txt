@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zigong.fyi/sitemap-index.xml

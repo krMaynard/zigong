@@ -1,0 +1,44 @@
+---
+interface Props {
+  label: string;
+}
+const { label } = Astro.props;
+---
+
+<button type="button" class="theme-toggle" aria-label={label} title={label}>
+  <span class="icon icon-sun" aria-hidden="true">☀️</span>
+  <span class="icon icon-moon" aria-hidden="true">🌙</span>
+</button>
+
+<style>
+  .theme-toggle {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: var(--bg-elevated);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .theme-toggle:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .icon-moon { display: none; }
+  :global([data-theme='dark']) .icon-sun { display: none; }
+  :global([data-theme='dark']) .icon-moon { display: inline; }
+</style>
+
+<script is:inline>
+  (function () {
+    var btns = document.querySelectorAll('.theme-toggle');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+    });
+  })();
+</script>

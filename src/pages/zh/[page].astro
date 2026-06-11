@@ -1,0 +1,12 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import { pillarPaths, type PageEntry } from '../../lib/content';
+
+export async function getStaticPaths() {
+  return pillarPaths('zh');
+}
+
+const { entry } = Astro.props as { entry: PageEntry };
+---
+
+<ContentPage entry={entry} />
