@@ -25,6 +25,9 @@ export interface Business {
   phone?: string;
   /** Optional outbound link (official site / map). Omit for placeholders. */
   url?: string;
+  /** Show a Baidu Maps block (interactive map when an `ak` is configured,
+   *  otherwise just a "View on Baidu Maps" link). Located by name + area. */
+  baiduMap?: boolean;
   /** Marks an example/scaffold card rather than a verified listing. */
   placeholder?: boolean;
 }
@@ -56,6 +59,7 @@ export const businesses: Business[] = [
     category: 'sports',
     emoji: '⚾',
     phone: '185 0813 4888',
+    baiduMap: true,
     images: [
       '/images/businesses/xingkong-baseball-storefront.jpg',
       '/images/businesses/xingkong-baseball-nets.jpg',
@@ -173,6 +177,7 @@ export interface DirectoryCopy {
   disclaimer: string;
   listTitle: string;
   listBody: string;
+  baiduLink: string;
 }
 
 export const directory: Record<Locale, DirectoryCopy> = {
@@ -192,6 +197,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
     listTitle: 'Run a business in Zigong?',
     listBody:
       'This directory is being built. A way to suggest a business — free and non-sponsored — is coming soon.',
+    baiduLink: 'View on Baidu Maps',
   },
   zh: {
     title: '本地商家',
@@ -208,6 +214,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
       '此处的条目为独立的编辑甄选，并非付费推广或广告；被收录并不意味着任何隶属、背书或合作关系。本站始终保持非官方、无关联的立场。',
     listTitle: '您在自贡经营生意？',
     listBody: '本名录仍在建设中。一个免费、非赞助的商家推荐入口即将开放。',
+    baiduLink: '在百度地图查看',
   },
   ja: {
     title: '地元のお店',
@@ -224,6 +231,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
       'ここでの掲載は独立した編集上の選定であり、有料掲載や広告ではありません。掲載されていても、提携・推奨・協力関係を意味するものではありません。本サイトは非公式・無関係の立場を保ちます。',
     listTitle: '自貢でお店を営んでいますか？',
     listBody: 'このディレクトリは制作中です。無料・非スポンサーでお店を推薦できる窓口を近日公開します。',
+    baiduLink: 'Baidu マップで見る',
   },
   ko: {
     title: '지역 상점',
@@ -240,5 +248,6 @@ export const directory: Record<Locale, DirectoryCopy> = {
       '여기의 항목은 독립적인 편집 선정이며 유료 게재나 광고가 아닙니다. 게재되었다고 해서 제휴·보증·협력 관계를 뜻하지 않습니다. 이 사이트는 비공식·무관 입장을 유지합니다.',
     listTitle: '쯔궁에서 가게를 운영하시나요?',
     listBody: '이 디렉터리는 만들어 가는 중입니다. 무료이며 비후원으로 가게를 추천할 수 있는 창구를 곧 엽니다.',
+    baiduLink: '바이두 지도에서 보기',
   },
 };

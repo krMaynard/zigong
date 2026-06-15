@@ -1,6 +1,7 @@
 ---
 import type { Business } from '../data/businesses';
 import type { Locale } from '../i18n/ui';
+import BaiduMap from './BaiduMap.astro';
 
 interface Props {
   business: Business;
@@ -8,15 +9,19 @@ interface Props {
   areaLabel: string;
   placeholderBadge: string;
   comingSoon: string;
+  baiduLink: string;
 }
-const { business, locale, areaLabel, placeholderBadge, comingSoon } = Astro.props;
+const { business, locale, areaLabel, placeholderBadge, comingSoon, baiduLink } = Astro.props;
 const name = business.name[locale];
 const blurb = business.blurb[locale];
 const area = business.area[locale];
 
 const cover = business.images?.[0];
 const extras = business.images?.slice(1) ?? [];
-const telHref = business.phone ? `tel:${business.phone.replace(/\s+/g, '')}` : null;
+// Keep only digits and a leading +, so separators (-, ., (), spaces) don't break tel:.
+const telHref = business.phone ? `tel:${business.phone.replace(/[^\d+]/g, '')}` : null;
+// Baidu indexes Chinese names — search by the zh name + area for the best hit.
+const baiduQuery = `${business.name.zh} ${business.area.zh}`.trim();
 
 const Tag = business.url ? 'a' : 'div';
 const linkAttrs = business.url ? { href: business.url, target: '_blank', rel: 'noopener' } : {};
@@ -36,14 +41,18 @@ const linkAttrs = business.url ? { href: business.url, target: '_blank', rel: 'n
 
   {extras.length > 0 && (
     <div class="biz-thumbs">
-      {extras.map((src) => <img src={src} alt={`${name} — photo`} loading="lazy" decoding="async" />)}
+      {extras.map((src, index) => (
+        <img src={src} alt={`${name} — ${index + 1}`} loading="lazy" decoding="async" />
+      ))}
     </div>
   )}
+
+  {business.baiduMap && <BaiduMap query={baiduQuery} title={name} linkLabel={baiduLink} />}
 
   {business.url ? (
     <span class="biz-go">↗</span>
   ) : telHref ? (
-    <a class="biz-contact" href={telHref}>📞 {business.phone}</a>
+    <a class="biz-contact" href={telHref}><span aria-hidden="true">📞</span> {business.phone}</a>
   ) : business.placeholder ? (
     <span class="biz-soon">{comingSoon}</span>
   ) : null}
