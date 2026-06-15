@@ -21,7 +21,7 @@ Always credit as the author's own ("作者摄 / Author's photo") in captions.
 | `heritage/salt-museum-lion-fence.jpg` | Stone lion on a fence post, street behind | Heritage / Salt | reserved |
 | `heritage/old-timber-roof.jpg` | Decayed carved timber roof structure of an old building | Heritage / Salt (architecture) | **Used** — Salt essay |
 | `heritage/war-memorial-wall-1.jpg` | Marble memorial inscription — wartime bombing of Ziliujing; "居安思危 勿忘国耻" | Heritage / history | **Used** — Salt essay (facts attributed to the memorial) |
-| `heritage/war-memorial-wall-2.jpg` | Continuation of the memorial inscription (dated 1997.9) | Heritage / history | reserved |
+| `heritage/war-memorial-wall-2.jpg` | Continuation of the memorial inscription (dated 1997.9) | Heritage / history | **Used** — Salt appendix |
 | `heritage/dino-museum-hall.jpg` | Sauropod skeleton in the museum's main hall, before a Jurassic mural | Heritage / Dinosaurs | **Used** — Dinosaurs essay |
 | `heritage/dino-museum-exterior.jpg` | Dinosaur Museum exterior — shell-like roof over the Dashanpu dig | Heritage / Dinosaurs | reserved |
 | `heritage/dino-skull.jpg` | Carnivore fossil skull in a display case | Heritage / Dinosaurs | reserved |
