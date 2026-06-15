@@ -93,8 +93,8 @@ export const directory: Record<Locale, DirectoryCopy> = {
   en: {
     title: 'Local Businesses',
     description:
-      'A growing, independent directory of Zigong’s local businesses — lantern workshops, Salt-Gang restaurants, snack shops, tea houses, and more.',
-    tagline: 'The workshops, kitchens, and makers behind the city — a directory in progress.',
+      'An independent, growing directory of local businesses in Zigong, China — the shops, makers, and places that give the city its character.',
+    tagline: 'The people and places behind the city — a directory in progress.',
     intro:
       'A city is its people and the things they make. This is a growing directory of Zigong’s local businesses, grouped by what they do. It’s just getting started — more listings are on the way.',
     areaLabel: 'Area',
@@ -111,8 +111,8 @@ export const directory: Record<Locale, DirectoryCopy> = {
   zh: {
     title: '本地商家',
     description:
-      '一份不断扩充的自贡本地商家独立名录——彩灯工坊、盐帮菜餐馆、小吃店、茶馆等等。',
-    tagline: '城市背后的工坊、灶台与匠人——一份正在完善的名录。',
+      '一份独立、不断扩充的自贡本地商家名录——记录赋予这座城市独特个性的店铺、匠人与去处。',
+    tagline: '城市背后的人与去处——一份正在完善的名录。',
     intro:
       '一座城市，是它的人和他们所创造的一切。这是一份不断扩充的自贡本地商家名录，按其经营类别分组。名录才刚刚起步——更多商家即将上线。',
     areaLabel: '所在区',
@@ -128,8 +128,8 @@ export const directory: Record<Locale, DirectoryCopy> = {
   ja: {
     title: '地元のお店',
     description:
-      '自貢の地元のお店を集めた、少しずつ育つ独立系ディレクトリ——ランタン工房、塩帮菜レストラン、軽食店、茶館など。',
-    tagline: '街を支える工房・厨房・作り手——制作中のディレクトリ。',
+      '自貢の地元のお店を集めた、独立した少しずつ育つディレクトリ——街に個性を与える店・作り手・場所を記録します。',
+    tagline: '街を支える人と場所——制作中のディレクトリ。',
     intro:
       '街とは、そこに暮らす人々と、その人たちが生み出すものです。これは自貢の地元のお店を業種ごとにまとめた、少しずつ育つディレクトリです。まだ始まったばかり——掲載は順次増えていきます。',
     areaLabel: 'エリア',
@@ -145,8 +145,8 @@ export const directory: Record<Locale, DirectoryCopy> = {
   ko: {
     title: '지역 상점',
     description:
-      '쯔궁의 지역 상점을 모은, 점점 자라나는 독립 디렉터리 — 등불 공방, 옌방차이 식당, 분식점, 찻집 등.',
-    tagline: '도시를 떠받치는 공방·주방·장인 — 만들어 가는 디렉터리.',
+      '쯔궁의 지역 상점을 모은, 독립적이고 점점 자라나는 디렉터리 — 도시에 개성을 더하는 가게·장인·장소를 기록합니다.',
+    tagline: '도시를 떠받치는 사람과 장소 — 만들어 가는 디렉터리.',
     intro:
       '도시는 곧 그곳의 사람들과 그들이 만들어 내는 것입니다. 이것은 쯔궁의 지역 상점을 업종별로 묶은, 점점 자라나는 디렉터리입니다. 이제 막 시작했으며 — 더 많은 항목이 곧 추가됩니다.',
     areaLabel: '지역',
