@@ -3,34 +3,62 @@
 An independent, **unofficial** multilingual site about the city of Zigong (自贡),
 China. Astro static site, deployed to GitHub Pages at **zigong.fyi**.
 
+## What this site is (tone & intent)
+
+A closely-observed portrait of Zigong as a **living city** — its deep history
+(salt, dinosaurs), its lantern culture, its **industry and economy now**, and its
+**everyday life** — written for a primarily **Chinese-national** audience (foreign
+visitors secondary). Promoting tourism is **not** a goal.
+
+- **Voice:** essayistic and literary, **reflective but impersonal** (no "I" — the
+  perspective shows through judgement and framing). Substantial but tight; keep
+  cited sources.
+- **Depth:** the Chinese text assumes a culturally-Chinese reader and goes for
+  insight over explaining basics; en/ja/ko add light context only where outsiders
+  need it.
+
 ## Localization is load-bearing — update all four languages together
 
-The site has native content in **English (root), Chinese (`/zh/`), Japanese
-(`/ja/`), and Korean (`/ko/`)**. Whenever content is added or changed in one
-language, the corresponding files in **all four** languages MUST be updated in the
-same commit.
+**Chinese is the authoritative version, served at the root.** Locales: Chinese
+(root, `/`), English (`/en/`), Japanese (`/ja/`), Korean (`/ko/`). Whenever content
+is added or changed in one language, the corresponding files in **all four**
+languages MUST be updated in the same commit, with **Chinese written first** as the
+lead version.
 
 - Page content lives in MDX, one file per page per locale:
-  `src/content/pages/<locale>/<slug>.mdx` for `locale ∈ {en, zh, ja, ko}`.
+  `src/content/pages/<locale>/<slug>.mdx` for `locale ∈ {zh, en, ja, ko}`.
   Every page exists as **four parallel files** with identical front-matter keys
-  (`title`, `description`, `accent`, `emoji`, `order`, optional `tagline`,
-  `sources`) — only the human-readable values are translated. Keep `accent`,
-  `emoji`, and `order` identical across locales so the nav/sorting line up.
+  (`title`, `description`, `emoji`, `order`, optional `tagline`, `sources`) — only
+  the human-readable values are translated. Keep `emoji` and `order` identical
+  across locales so sorting lines up. (`accent` is legacy/ignored — the design uses
+  a single site-wide accent.)
 - Site **chrome** strings (nav, footer, buttons, disclaimer) live in
   `src/i18n/ui.ts`. Every key must exist in all four locales — add `en`, `zh`,
   `ja`, `ko` together.
-- Home-page copy (hero tagline, pillar blurbs, gallery captions) lives in
-  `src/i18n/home.ts`, again with an entry per locale.
-- Translations should read **naturally in each language**, not mirror the English
-  word-for-word. Chinese especially must read as authentic native content.
+- Home (Overview) copy — the framing essay + theme cards — lives in
+  `src/i18n/home.ts`, with an entry per locale.
+- Translations should read **naturally in each language**, never mirror word-for-
+  word. Chinese is the authoritative native text the others follow.
+
+## Structure (themes)
+
+The site is organized into **themes**, not tourist pillars: **Overview** (home),
+**Heritage** (salt + dinosaurs), **Culture** (lanterns), **Industry** (the salt-to-
+present economy), **Everyday life** (food, kids, lifestyle), **People & places**
+(the businesses directory), and **About**. Nav/footer labels live in `ui.ts`
+(`nav.*`); the `routes` map points each theme at its slug. Some themes currently
+resolve to a single existing essay (Culture→`lantern-festival`, Industry→`tech`,
+Everyday→`kids`) pending dedicated section pages + deeper rewrites. There is **no
+"Visit" page** (tourism logistics were removed).
 
 ## Routing
 
-- English is unprefixed at the root (`prefixDefaultLocale: false`); other locales
-  are under `/zh/`, `/ja/`, `/ko/` (`astro.config.mjs` → `i18n`).
-- Home pages: `src/pages/index.astro` + `src/pages/<locale>/index.astro` (thin
+- **Chinese is unprefixed at the root** (`defaultLocale: 'zh'`,
+  `prefixDefaultLocale: false`); en/ja/ko are under `/en/`, `/ja/`, `/ko/`
+  (`astro.config.mjs` → `i18n`). Old `/zh/*` URLs redirect to root (see `redirects`).
+- Home pages: `src/pages/index.astro` (zh) + `src/pages/<locale>/index.astro` (thin
   wrappers around `HomePage.astro`).
-- Content pages: `src/pages/[page].astro` (en) + `src/pages/<locale>/[page].astro`,
+- Content pages: `src/pages/[page].astro` (zh, root) + `src/pages/<locale>/[page].astro`,
   each calling `pillarPaths(locale)` from `src/lib/content.ts`.
 - The language switcher maps the current path across locales via
   `switchLocalePath` (`src/i18n/utils.ts`) so visitors stay on the same page.
