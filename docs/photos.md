@@ -23,7 +23,7 @@ Always credit as the author's own ("作者摄 / Author's photo") in captions.
 | `heritage/war-memorial-wall-1.jpg` | Marble memorial inscription — wartime bombing of Ziliujing; "居安思危 勿忘国耻" | Heritage / history | **Used** — Salt essay (facts attributed to the memorial) |
 | `heritage/war-memorial-wall-2.jpg` | Continuation of the memorial inscription (dated 1997.9) | Heritage / history | **Used** — Salt appendix |
 | `heritage/dino-museum-hall.jpg` | Sauropod skeleton in the museum's main hall, before a Jurassic mural | Heritage / Dinosaurs | **Used** — Dinosaurs essay |
-| `heritage/dino-museum-exterior.jpg` | Dinosaur Museum exterior — shell-like roof over the Dashanpu dig | Heritage / Dinosaurs | reserved |
+| `heritage/dino-museum-exterior.jpg` | Dinosaur Museum exterior — shell-like roof over the Dashanpu dig | Heritage / Dinosaurs | **Used** — Dinosaurs essay |
 | `heritage/dino-skull.jpg` | Carnivore fossil skull in a display case | Heritage / Dinosaurs | reserved |
 | `heritage/dino-museum-preface.jpg` | The museum's "前言 / Preface" plaque (zh/en/ja) | Heritage / Dinosaurs | reserved |
 | `industry/reservoir-construction.jpg` | Reservoir/dam under construction in a quarried hillside; slogan "兴修水利 利国利民" | Industry | reserved |
