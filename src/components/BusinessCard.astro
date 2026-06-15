@@ -1,0 +1,76 @@
+---
+import type { Business } from '../data/businesses';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  business: Business;
+  locale: Locale;
+  areaLabel: string;
+  placeholderBadge: string;
+  comingSoon: string;
+}
+const { business, locale, areaLabel, placeholderBadge, comingSoon } = Astro.props;
+const name = business.name[locale];
+const blurb = business.blurb[locale];
+const area = business.area[locale];
+
+const Tag = business.url ? 'a' : 'div';
+const linkAttrs = business.url ? { href: business.url, target: '_blank', rel: 'noopener' } : {};
+---
+
+<Tag class:list={['biz-card', { 'is-placeholder': business.placeholder }]} {...linkAttrs}>
+  <div class="biz-head">
+    <span class="biz-emoji" aria-hidden="true">{business.emoji}</span>
+    {business.placeholder && <span class="biz-badge">{placeholderBadge}</span>}
+  </div>
+  <h3 class="biz-name">{name}</h3>
+  <p class="biz-area"><span class="biz-area-label">{areaLabel}:</span> {area}</p>
+  <p class="biz-blurb">{blurb}</p>
+  {business.url
+    ? <span class="biz-go">↗</span>
+    : <span class="biz-soon">{comingSoon}</span>}
+</Tag>
+
+<style>
+  .biz-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.3rem;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  a.biz-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
+  .biz-card.is-placeholder { border-style: dashed; border-color: var(--border-strong); background: var(--bg-subtle); }
+
+  .biz-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+  .biz-emoji { font-size: 2rem; line-height: 1; }
+  .biz-badge {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    background: var(--accent-soft);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+  }
+  .biz-name { margin: 0.2rem 0 0; color: var(--text-strong); font-size: 1.15rem; }
+  .biz-area { margin: 0; font-size: 0.85rem; color: var(--text-muted); }
+  .biz-area-label { font-weight: 600; color: var(--text-faint); }
+  .biz-blurb { margin: 0.2rem 0 0; font-size: 0.92rem; color: var(--text-muted); }
+  .biz-go { margin-top: auto; padding-top: 0.6rem; font-weight: 700; color: var(--accent-deep); }
+  .biz-soon {
+    margin-top: auto;
+    padding-top: 0.6rem;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--text-faint);
+  }
+</style>

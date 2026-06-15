@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from './Hero.astro';
+import BusinessCard from './BusinessCard.astro';
+import { asLocale } from '../i18n/utils';
+import { businesses, categoryLabels, categoryOrder, directory } from '../data/businesses';
+
+const locale = asLocale(Astro.currentLocale);
+const copy = directory[locale];
+
+// Group businesses by category, keeping the defined display order and dropping
+// empty categories.
+const groups = categoryOrder
+  .map((cat) => ({ cat, items: businesses.filter((b) => b.category === cat) }))
+  .filter((g) => g.items.length > 0);
+---
+
+<BaseLayout title={copy.title} description={copy.description} accent="businesses">
+  <Hero eyebrow="🛍️" title={copy.title} tagline={copy.tagline} />
+
+  <section class="section">
+    <div class="container">
+      <p class="intro container-narrow">{copy.intro}</p>
+
+      <div class="ribbon disclaimer-ribbon" role="note">
+        <strong>{copy.disclaimerTitle}.</strong> {copy.disclaimer}
+      </div>
+
+      {groups.map((g) => (
+        <section class="biz-group" aria-label={categoryLabels[g.cat][locale]}>
+          <p class="eyebrow">{categoryLabels[g.cat][locale]}</p>
+          <div class="grid grid-pillars biz-grid">
+            {g.items.map((b) => (
+              <BusinessCard
+                business={b}
+                locale={locale}
+                areaLabel={copy.areaLabel}
+                placeholderBadge={copy.placeholderBadge}
+                comingSoon={copy.comingSoon}
+              />
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <aside class="list-cta">
+        <h2>{copy.listTitle}</h2>
+        <p>{copy.listBody}</p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro { font-size: clamp(1.05rem, 2.3vw, 1.25rem); color: var(--text-muted); }
+  .disclaimer-ribbon { margin-top: 1.4rem; font-size: 0.9rem; color: var(--text-muted); }
+  .disclaimer-ribbon strong { color: var(--accent-deep); }
+  .biz-group { margin-top: 2.6rem; }
+  .biz-group .eyebrow { margin-bottom: 1rem; }
+  .biz-grid { align-items: stretch; }
+  .list-cta {
+    margin-top: 3.5rem;
+    padding: 1.6rem 1.8rem;
+    border: 2px solid var(--accent);
+    border-radius: var(--radius-lg);
+    background: var(--accent-soft);
+  }
+  .list-cta h2 { margin: 0 0 0.4rem; }
+  .list-cta p { margin: 0; color: var(--text-muted); max-width: 60ch; }
+</style>

@@ -8,8 +8,8 @@ import { htmlLang, locales, type Locale } from '../i18n/ui';
 interface Props {
   title?: string;
   description?: string;
-  /** Per-pillar accent: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech' */
-  accent?: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech';
+  /** Per-pillar accent: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech' | 'businesses' */
+  accent?: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech' | 'businesses';
   ogImage?: string;
 }
 
@@ -73,6 +73,7 @@ const fontHref = `https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;
       [data-accent='dinosaurs'] { --accent: var(--ink-blue); --accent-deep: color-mix(in srgb, var(--ink-blue) 78%, black); --accent-soft: color-mix(in srgb, var(--ink-blue) 14%, transparent); }
       [data-accent='kids'] { --accent: var(--plum); --accent-deep: color-mix(in srgb, var(--plum) 78%, black); --accent-soft: color-mix(in srgb, var(--plum) 14%, transparent); }
       [data-accent='tech'] { --accent: var(--jade); --accent-deep: color-mix(in srgb, var(--jade) 78%, black); --accent-soft: color-mix(in srgb, var(--jade) 14%, transparent); }
+      [data-accent='businesses'] { --accent: var(--gold); --accent-deep: color-mix(in srgb, var(--gold) 52%, black); --accent-soft: color-mix(in srgb, var(--gold) 18%, transparent); }
     </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />

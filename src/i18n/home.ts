@@ -5,7 +5,7 @@ import type { Locale } from './ui';
 export interface HomeContent {
   heroTagline: string;
   intro: string;
-  pillars: { key: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech'; emoji: string; title: string; blurb: string }[];
+  pillars: { key: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech' | 'businesses'; emoji: string; title: string; blurb: string }[];
   gallery: { emoji: string; caption: string }[];
 }
 
@@ -21,6 +21,7 @@ export const home: Record<Locale, HomeContent> = {
       { key: 'dinosaurs', emoji: '🦕', title: 'Dinosaurs', blurb: 'A world-class fossil site and a museum built right over the dig — Zigong is a genuine Jurassic treasure trove.' },
       { key: 'kids', emoji: '👧', title: 'For Kids', blurb: 'Dinosaurs, lanterns, parks and hands-on fun — Zigong is a brilliant city to explore with children.' },
       { key: 'tech', emoji: '🔬', title: 'Tech & Innovation', blurb: 'From ancient deep-drilling engineering to modern industry — a city that has always tinkered with the future.' },
+      { key: 'businesses', emoji: '🛍️', title: 'Local Businesses', blurb: 'A growing directory of the workshops, restaurants, and makers that give the city its flavour.' },
     ],
     gallery: [
       { emoji: '🏮', caption: 'Lanterns over the festival grounds' },
@@ -39,6 +40,7 @@ export const home: Record<Locale, HomeContent> = {
       { key: 'dinosaurs', emoji: '🦕', title: '恐龙', blurb: '世界级的化石遗址，博物馆就建在发掘现场之上——自贡是名副其实的侏罗纪宝库。' },
       { key: 'kids', emoji: '👧', title: '亲子游', blurb: '恐龙、彩灯、公园与亲手体验——自贡是一座非常适合带孩子探索的城市。' },
       { key: 'tech', emoji: '🔬', title: '科技与创新', blurb: '从古代深井钻探工程，到现代工业——这座城市始终在为未来动手钻研。' },
+      { key: 'businesses', emoji: '🛍️', title: '本地商家', blurb: '一份不断扩充的名录，收录赋予这座城市独特风味的工坊、餐馆与匠人。' },
     ],
     gallery: [
       { emoji: '🏮', caption: '灯会现场的璀璨彩灯' },
@@ -57,6 +59,7 @@ export const home: Record<Locale, HomeContent> = {
       { key: 'dinosaurs', emoji: '🦕', title: '恐竜', blurb: '世界クラスの化石産地で、発掘現場の真上に建つ博物館。自貢はまさにジュラ紀の宝庫です。' },
       { key: 'kids', emoji: '👧', title: '子ども向け', blurb: '恐竜、ランタン、公園、体験型の楽しみ——自貢は子どもと巡るのにすばらしい街です。' },
       { key: 'tech', emoji: '🔬', title: '技術と革新', blurb: '古代の深掘削技術から現代産業まで——つねに未来を手で探ってきた街。' },
+      { key: 'businesses', emoji: '🛍️', title: '地元のお店', blurb: '街の味わいを生み出す工房・飲食店・作り手を集めた、少しずつ育つディレクトリ。' },
     ],
     gallery: [
       { emoji: '🏮', caption: '祭り会場を彩るランタン' },
@@ -75,6 +78,7 @@ export const home: Record<Locale, HomeContent> = {
       { key: 'dinosaurs', emoji: '🦕', title: '공룡', blurb: '세계적인 화석 유적지와 발굴 현장 바로 위에 지은 박물관 — 쯔궁은 진정한 쥐라기의 보고입니다.' },
       { key: 'kids', emoji: '👧', title: '아이들과 함께', blurb: '공룡, 등불, 공원, 체험 거리 — 쯔궁은 아이와 함께 둘러보기에 멋진 도시입니다.' },
       { key: 'tech', emoji: '🔬', title: '기술과 혁신', blurb: '고대의 심정 굴착 기술부터 현대 산업까지 — 언제나 손수 미래를 탐구해 온 도시.' },
+      { key: 'businesses', emoji: '🛍️', title: '지역 상점', blurb: '도시의 풍미를 빚어내는 공방·식당·장인을 담은, 점점 자라나는 디렉터리.' },
     ],
     gallery: [
       { emoji: '🏮', caption: '축제장을 수놓은 등불' },
