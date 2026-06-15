@@ -33,6 +33,7 @@ export const routes = {
   dinosaurs: 'dinosaurs',
   kids: 'kids',
   tech: 'tech',
+  businesses: 'businesses',
   visit: 'visit',
   about: 'about',
 } as const;
@@ -46,6 +47,7 @@ export type UI = {
   'nav.dinosaurs': string;
   'nav.kids': string;
   'nav.tech': string;
+  'nav.businesses': string;
   'nav.visit': string;
   'nav.about': string;
   'nav.menu': string;
@@ -74,6 +76,7 @@ export const ui: Record<Locale, UI> = {
     'nav.dinosaurs': 'Dinosaurs',
     'nav.kids': 'For Kids',
     'nav.tech': 'Tech & Innovation',
+    'nav.businesses': 'Local Businesses',
     'nav.visit': 'Visit',
     'nav.about': 'About',
     'nav.menu': 'Menu',
@@ -102,6 +105,7 @@ export const ui: Record<Locale, UI> = {
     'nav.dinosaurs': '恐龙',
     'nav.kids': '亲子游',
     'nav.tech': '科技与创新',
+    'nav.businesses': '本地商家',
     'nav.visit': '出行指南',
     'nav.about': '关于',
     'nav.menu': '菜单',
@@ -130,6 +134,7 @@ export const ui: Record<Locale, UI> = {
     'nav.dinosaurs': '恐竜',
     'nav.kids': '子ども向け',
     'nav.tech': '技術と革新',
+    'nav.businesses': '地元のお店',
     'nav.visit': '旅のヒント',
     'nav.about': 'このサイトについて',
     'nav.menu': 'メニュー',
@@ -158,6 +163,7 @@ export const ui: Record<Locale, UI> = {
     'nav.dinosaurs': '공룡',
     'nav.kids': '아이들과 함께',
     'nav.tech': '기술과 혁신',
+    'nav.businesses': '지역 상점',
     'nav.visit': '여행 안내',
     'nav.about': '소개',
     'nav.menu': '메뉴',

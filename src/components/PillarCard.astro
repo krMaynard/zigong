@@ -5,7 +5,7 @@ interface Props {
   title: string;
   blurb: string;
   cta: string;
-  accent?: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech';
+  accent?: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech' | 'businesses';
 }
 const { href, emoji, title, blurb, cta, accent = 'lantern' } = Astro.props;
 ---
@@ -23,4 +23,5 @@ const { href, emoji, title, blurb, cta, accent = 'lantern' } = Astro.props;
   .pillar-card[data-accent='dinosaurs'] { --accent: var(--ink-blue); --accent-deep: color-mix(in srgb, var(--ink-blue) 78%, black); --accent-soft: color-mix(in srgb, var(--ink-blue) 14%, transparent); }
   .pillar-card[data-accent='kids'] { --accent: var(--plum); --accent-deep: color-mix(in srgb, var(--plum) 78%, black); --accent-soft: color-mix(in srgb, var(--plum) 14%, transparent); }
   .pillar-card[data-accent='tech'] { --accent: var(--jade); --accent-deep: color-mix(in srgb, var(--jade) 78%, black); --accent-soft: color-mix(in srgb, var(--jade) 14%, transparent); }
+  .pillar-card[data-accent='businesses'] { --accent: var(--gold); --accent-deep: color-mix(in srgb, var(--gold) 52%, black); --accent-soft: color-mix(in srgb, var(--gold) 18%, transparent); }
 </style>

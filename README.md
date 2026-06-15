@@ -46,7 +46,8 @@ npm run check     # astro type/diagnostics check
 | `src/content/pages/{en,zh,ja,ko}/*.mdx` | Page content, one file per page per locale |
 | `src/content.config.ts` | Content collection schema |
 | `src/layouts/BaseLayout.astro` | `<head>`, SEO/OG, hreflang, theme script, nav + footer |
-| `src/components/` | Nav, LanguageSwitcher, ThemeToggle, Footer, Hero, PillarCard, PhotoStrip, ContentPage, HomePage |
+| `src/components/` | Nav, LanguageSwitcher, ThemeToggle, Footer, Hero, PillarCard, PhotoStrip, ContentPage, HomePage, BusinessDirectory, BusinessCard |
+| `src/data/businesses.ts` | Local-business directory data + per-locale copy (scaffold — replace placeholder entries) |
 | `src/i18n/ui.ts` | UI string dictionary (site chrome) |
 | `src/i18n/home.ts` | Home-page copy per locale |
 | `src/i18n/utils.ts` | `useTranslations`, locale URL helpers, language-switch path mapping |
