@@ -14,21 +14,39 @@ const name = business.name[locale];
 const blurb = business.blurb[locale];
 const area = business.area[locale];
 
+const cover = business.images?.[0];
+const extras = business.images?.slice(1) ?? [];
+const telHref = business.phone ? `tel:${business.phone.replace(/\s+/g, '')}` : null;
+
 const Tag = business.url ? 'a' : 'div';
 const linkAttrs = business.url ? { href: business.url, target: '_blank', rel: 'noopener' } : {};
 ---
 
 <Tag class:list={['biz-card', { 'is-placeholder': business.placeholder }]} {...linkAttrs}>
-  <div class="biz-head">
-    <span class="biz-emoji" aria-hidden="true">{business.emoji}</span>
-    {business.placeholder && <span class="biz-badge">{placeholderBadge}</span>}
-  </div>
+  {cover && <img class="biz-photo" src={cover} alt={name} loading="lazy" decoding="async" />}
+  {(!cover || business.placeholder) && (
+    <div class="biz-head">
+      {!cover && <span class="biz-emoji" aria-hidden="true">{business.emoji}</span>}
+      {business.placeholder && <span class="biz-badge">{placeholderBadge}</span>}
+    </div>
+  )}
   <h3 class="biz-name">{name}</h3>
   <p class="biz-area"><span class="biz-area-label">{areaLabel}:</span> {area}</p>
   <p class="biz-blurb">{blurb}</p>
-  {business.url
-    ? <span class="biz-go">↗</span>
-    : <span class="biz-soon">{comingSoon}</span>}
+
+  {extras.length > 0 && (
+    <div class="biz-thumbs">
+      {extras.map((src) => <img src={src} alt={`${name} — photo`} loading="lazy" decoding="async" />)}
+    </div>
+  )}
+
+  {business.url ? (
+    <span class="biz-go">↗</span>
+  ) : telHref ? (
+    <a class="biz-contact" href={telHref}>📞 {business.phone}</a>
+  ) : business.placeholder ? (
+    <span class="biz-soon">{comingSoon}</span>
+  ) : null}
 </Tag>
 
 <style>
@@ -43,11 +61,22 @@ const linkAttrs = business.url ? { href: business.url, target: '_blank', rel: 'n
     box-shadow: var(--shadow);
     text-decoration: none;
     color: inherit;
+    overflow: hidden;
     transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   }
   a.biz-card:hover,
   a.biz-card:focus-visible { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
   .biz-card.is-placeholder { border-style: dashed; border-color: var(--border-strong); background: var(--bg-subtle); }
+
+  /* Cover image bleeds to the card edges. */
+  .biz-photo {
+    margin: -1.3rem -1.3rem 0.6rem;
+    width: calc(100% + 2.6rem);
+    max-width: none;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    background: var(--bg-subtle);
+  }
 
   .biz-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
   .biz-emoji { font-size: 2rem; line-height: 1; }
@@ -66,7 +95,28 @@ const linkAttrs = business.url ? { href: business.url, target: '_blank', rel: 'n
   .biz-area { margin: 0; font-size: 0.85rem; color: var(--text-muted); }
   .biz-area-label { font-weight: 600; color: var(--text-faint); }
   .biz-blurb { margin: 0.2rem 0 0; font-size: 0.92rem; color: var(--text-muted); }
+
+  .biz-thumbs { display: flex; gap: 0.4rem; margin-top: 0.5rem; }
+  .biz-thumbs img {
+    flex: 1 1 0;
+    width: 0;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
   .biz-go { margin-top: auto; padding-top: 0.6rem; font-weight: 700; color: var(--accent-deep); }
+  .biz-contact {
+    margin-top: auto;
+    padding-top: 0.6rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--accent-deep);
+    text-decoration: none;
+  }
+  .biz-contact:hover { text-decoration: underline; }
   .biz-soon {
     margin-top: auto;
     padding-top: 0.6rem;

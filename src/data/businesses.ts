@@ -10,7 +10,7 @@ import type { Locale } from '../i18n/ui';
 
 type Loc = Record<Locale, string>;
 
-export type BizCategory = 'lanterns' | 'food' | 'snacks' | 'tea' | 'crafts' | 'stay';
+export type BizCategory = 'lanterns' | 'food' | 'snacks' | 'tea' | 'sports' | 'crafts' | 'stay';
 
 export interface Business {
   id: string;
@@ -19,6 +19,10 @@ export interface Business {
   name: Loc;
   area: Loc;
   blurb: Loc;
+  /** Cover image first; any extras render as thumbnails. Paths under /public. */
+  images?: string[];
+  /** Public contact number, shown as a tel: link. */
+  phone?: string;
   /** Optional outbound link (official site / map). Omit for placeholders. */
   url?: string;
   /** Marks an example/scaffold card rather than a verified listing. */
@@ -26,13 +30,14 @@ export interface Business {
 }
 
 /** Display order + labels for the category groupings. */
-export const categoryOrder: BizCategory[] = ['lanterns', 'food', 'snacks', 'tea', 'crafts', 'stay'];
+export const categoryOrder: BizCategory[] = ['lanterns', 'food', 'snacks', 'tea', 'sports', 'crafts', 'stay'];
 
 export const categoryLabels: Record<BizCategory, Loc> = {
   lanterns: { en: 'Lantern workshops & makers', zh: '彩灯工坊与制作', ja: 'ランタン工房・メーカー', ko: '등불 공방·제작' },
   food: { en: 'Salt-Gang restaurants', zh: '盐帮菜餐馆', ja: '塩帮菜レストラン', ko: '옌방차이 식당' },
   snacks: { en: 'Snacks & local specialties', zh: '小吃与特产', ja: '軽食・名物', ko: '간식·특산품' },
   tea: { en: 'Tea houses', zh: '茶馆', ja: '茶館', ko: '찻집' },
+  sports: { en: 'Sports & recreation', zh: '运动与休闲', ja: 'スポーツ・レジャー', ko: '스포츠·레저' },
   crafts: { en: 'Crafts & souvenirs', zh: '工艺与伴手礼', ja: '工芸・おみやげ', ko: '공예·기념품' },
   stay: { en: 'Places to stay', zh: '住宿', ja: '宿泊', ko: '숙소' },
 };
@@ -44,8 +49,32 @@ const AREA = {
   yantan: { en: 'Yantan District', zh: '沿滩区', ja: '沿灘区', ko: '옌탄구' },
 } satisfies Record<string, Loc>;
 
-// One example card per category. All placeholders — replace with real listings.
+// Real, verified listings first, then example placeholders to fill in.
 export const businesses: Business[] = [
+  {
+    id: 'xingkong-baseball',
+    category: 'sports',
+    emoji: '⚾',
+    phone: '185 0813 4888',
+    images: [
+      '/images/businesses/xingkong-baseball-storefront.jpg',
+      '/images/businesses/xingkong-baseball-nets.jpg',
+      '/images/businesses/xingkong-baseball-cages.jpg',
+    ],
+    area: { en: 'Zigong', zh: '自贡', ja: '自貢', ko: '쯔궁' },
+    name: {
+      en: 'Xingkong Baseball Sports Hall',
+      zh: '星空棒球运动馆',
+      ja: '星空ベースボール運動館',
+      ko: '싱쿵 야구 스포츠관',
+    },
+    blurb: {
+      en: 'An indoor baseball center with batting nets, cages, and tees — an active, family-friendly outing, and home base for the local "Shenlong" team.',
+      zh: '一家室内棒球运动馆，配有击球网、打击笼与打击架——是适合全家的活力去处，也是本地“燊龙队”的主场。',
+      ja: '打撃ネット・ケージ・ティーを備えた屋内野球施設。家族で楽しめるアクティブなお出かけ先で、地元「燊龍」チームの本拠地でもあります。',
+      ko: '타격 네트와 케이지, 티를 갖춘 실내 야구 센터 — 온 가족이 활기차게 즐길 나들이 장소이자 지역 “선룽” 팀의 홈입니다.',
+    },
+  },
   {
     id: 'example-lantern-workshop',
     category: 'lanterns',
