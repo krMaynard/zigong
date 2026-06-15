@@ -27,8 +27,8 @@ const groups = categoryOrder
       </div>
 
       {groups.map((g) => (
-        <section class="biz-group" aria-label={categoryLabels[g.cat][locale]}>
-          <p class="eyebrow">{categoryLabels[g.cat][locale]}</p>
+        <section class="biz-group" aria-labelledby={`cat-${g.cat}`}>
+          <p id={`cat-${g.cat}`} class="eyebrow" role="heading" aria-level="2">{categoryLabels[g.cat][locale]}</p>
           <div class="grid grid-pillars biz-grid">
             {g.items.map((b) => (
               <BusinessCard

@@ -45,7 +45,8 @@ const linkAttrs = business.url ? { href: business.url, target: '_blank', rel: 'n
     color: inherit;
     transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   }
-  a.biz-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
+  a.biz-card:hover,
+  a.biz-card:focus-visible { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
   .biz-card.is-placeholder { border-style: dashed; border-color: var(--border-strong); background: var(--bg-subtle); }
 
   .biz-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
