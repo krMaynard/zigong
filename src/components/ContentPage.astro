@@ -33,7 +33,7 @@ const { title, description, accent, emoji, tagline, sources } = entry.data;
               typeof s === 'string' ? (
                 <li>{s}</li>
               ) : (
-                <li><a href={s.url} target="_blank" rel="noopener">{s.text}</a></li>
+                <li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.text}</a></li>
               ),
             )}
           </ul>

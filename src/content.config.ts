@@ -19,7 +19,7 @@ const pages = defineCollection({
     /** Source/credit lines shown at the foot of the page. Each is either plain
      *  text or a { text, url } pair rendered as a link. */
     sources: z
-      .array(z.union([z.string(), z.object({ text: z.string(), url: z.string() })]))
+      .array(z.union([z.string(), z.object({ text: z.string(), url: z.string().url() })]))
       .default([]),
   }),
 });
