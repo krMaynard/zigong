@@ -29,27 +29,27 @@ Always credit as the author's own ("作者摄 / Author's photo") in captions.
 
 Staged for the **Culture** section (and one for Overview/Everyday). All reserved.
 
-| File | Shows |
-|------|-------|
-| `overview/cityscape-night.jpg` | High-rise apartment towers lit up at night (Overview / Everyday) |
-| `culture/lantern-bridge.jpg` | The lantern bridge hung with lanterns, pagoda + gateway behind (strong hero) |
-| `culture/lantern-bridge-arch.jpg` | Lantern bridge + pagoda, vertical, reflections |
-| `culture/lantern-bridge-gate.jpg` | Lantern bridge with a glowing gateway |
-| `culture/lantern-bridge-dusk.jpg` | Bridge roofline + pagoda against deep-blue dusk |
-| `culture/lantern-reflection.jpg` | Lantern sets mirrored in the water under the bridge arch |
-| `culture/lantern-reflection-arch.jpg` | Moon-arch + floating lanterns reflected in water |
-| `culture/lantern-porcelain-dishes.jpg` | Blue-and-white porcelain teapot/bowl lanterns (signature bound-porcelain craft) |
-| `culture/lantern-porcelain-vase.jpg` | Giant porcelain-vase lantern with crowds (scale) |
-| `culture/lantern-saltworker.jpg` | Lantern figure of a salt worker (ties Culture↔Salt) |
-| `culture/lantern-salt-placard.jpg` | Placard for the "千年盐韵" salt-themed lantern set, 23rd festival |
-| `culture/lantern-zhang-daqian.jpg` | Lantern bust of painter Zhang Daqian (张大千) |
-| `culture/lantern-pandas.jpg` | Panda lanterns + Sichuan scene |
-| `culture/lantern-bamboo.jpg` | Tall bamboo/derrick lantern amid blue willow lights |
-| `culture/lantern-golden.jpg` | Golden deity/dragon lantern set |
-| `culture/lantern-phoenix-palace.jpg` | Palace + phoenix lantern (sponsor: 自贡市商业银行) |
-| `culture/lantern-gateways.jpg` | Illuminated gateways + deer lantern |
-| `culture/lantern-entrance-2017.jpg` | "2017 自贡灯会 / 23rd Zigong Int'l Dinosaur Lantern Festival" entrance sign |
-| `culture/lantern-entrance-street.jpg` | Entrance sign from the street with traffic |
+| File | Shows | Theme | Status |
+|------|-------|-------|--------|
+| `overview/cityscape-night.jpg` | High-rise apartment towers lit up at night | Overview / Everyday | reserved |
+| `culture/lantern-bridge.jpg` | The lantern bridge hung with lanterns, pagoda + gateway behind (strong hero) | Culture (lanterns) | reserved |
+| `culture/lantern-bridge-arch.jpg` | Lantern bridge + pagoda, vertical, reflections | Culture (lanterns) | reserved |
+| `culture/lantern-bridge-gate.jpg` | Lantern bridge with a glowing gateway | Culture (lanterns) | reserved |
+| `culture/lantern-bridge-dusk.jpg` | Bridge roofline + pagoda against deep-blue dusk | Culture (lanterns) | reserved |
+| `culture/lantern-reflection.jpg` | Lantern sets mirrored in the water under the bridge arch | Culture (lanterns) | reserved |
+| `culture/lantern-reflection-arch.jpg` | Moon-arch + floating lanterns reflected in water | Culture (lanterns) | reserved |
+| `culture/lantern-porcelain-dishes.jpg` | Blue-and-white porcelain teapot/bowl lanterns (signature bound-porcelain craft) | Culture (lanterns) | reserved |
+| `culture/lantern-porcelain-vase.jpg` | Giant porcelain-vase lantern with crowds (scale) | Culture (lanterns) | reserved |
+| `culture/lantern-saltworker.jpg` | Lantern figure of a salt worker (ties Culture↔Salt) | Culture (lanterns) | reserved |
+| `culture/lantern-salt-placard.jpg` | Placard for the "千年盐韵" salt-themed lantern set, 23rd festival | Culture (lanterns) | reserved |
+| `culture/lantern-zhang-daqian.jpg` | Lantern bust of painter Zhang Daqian (张大千) | Culture (lanterns) | reserved |
+| `culture/lantern-pandas.jpg` | Panda lanterns + Sichuan scene | Culture (lanterns) | reserved |
+| `culture/lantern-bamboo.jpg` | Tall bamboo/derrick lantern amid blue willow lights | Culture (lanterns) | reserved |
+| `culture/lantern-golden.jpg` | Golden deity/dragon lantern set | Culture (lanterns) | reserved |
+| `culture/lantern-phoenix-palace.jpg` | Palace + phoenix lantern (sponsor: 自贡市商业银行) | Culture (lanterns) | reserved |
+| `culture/lantern-gateways.jpg` | Illuminated gateways + deer lantern | Culture (lanterns) | reserved |
+| `culture/lantern-entrance-2017.jpg` | "2017 自贡灯会 / 23rd Zigong Int'l Dinosaur Lantern Festival" entrance sign | Culture (lanterns) | reserved |
+| `culture/lantern-entrance-street.jpg` | Entrance sign from the street with traffic | Culture (lanterns) | reserved |
 
 To re-optimize new originals, resize to ~1300–2000px wide at mozjpeg q78 (see the
 one-off `sharp` script used in the PR that added these).
