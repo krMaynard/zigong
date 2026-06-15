@@ -3,25 +3,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 ---
 
-<BaseLayout title="Page not found" accent="lantern">
+<BaseLayout title="页面未找到">
   <Hero
     eyebrow="404"
-    title="Lost in the lantern park"
-    tagline="This page wandered off into the dark. Let's get you back to the light."
+    title="这里没有页面"
+    tagline="你要找的页面也许已经移动，或者从未存在。"
   >
-    <a class="btn btn-primary" id="home-link" href="/">Home 🏮</a>
+    <a class="btn btn-primary" id="home-link" href="/">返回首页</a>
   </Hero>
 </BaseLayout>
 
 <script is:inline>
-  // GitHub Pages serves one static /404.html for every unknown path, so localize
-  // it on the client from the URL's locale prefix (/zh/, /ja/, /ko/).
+  // Chinese is the default at the root; localize for the /en/, /ja/, /ko/ prefixes.
   (function () {
     var seg = window.location.pathname.split('/')[1];
     var L = {
-      zh: { lang: 'zh-CN', doc: '页面未找到 · 自贡', title: '迷失在彩灯园里', tagline: '这个页面溜进了黑暗之中。让我们带你回到光亮处。', home: '首页 🏮' },
-      ja: { lang: 'ja', doc: 'ページが見つかりません · 自貢', title: 'ランタンの庭で迷子に', tagline: 'このページは暗がりへ迷い込んでしまいました。光のある場所へ戻りましょう。', home: 'ホーム 🏮' },
-      ko: { lang: 'ko', doc: '페이지를 찾을 수 없습니다 · 쯔궁', title: '등불 정원에서 길을 잃었습니다', tagline: '이 페이지는 어둠 속으로 사라졌습니다. 빛이 있는 곳으로 모셔다 드릴게요.', home: '홈 🏮' },
+      en: { lang: 'en', doc: 'Page not found · Zigong', title: 'Nothing here', tagline: 'The page you’re looking for may have moved, or never existed.', home: 'Back to the overview' },
+      ja: { lang: 'ja', doc: 'ページが見つかりません · 自貢', title: 'ここにはページがありません', tagline: 'お探しのページは移動したか、もともと存在しないようです。', home: 'トップへ戻る' },
+      ko: { lang: 'ko', doc: '페이지를 찾을 수 없습니다 · 쯔궁', title: '여기에는 페이지가 없습니다', tagline: '찾으시는 페이지가 이동했거나 처음부터 없는 것 같습니다.', home: '처음으로' },
     };
     var t = L[seg];
     if (!t) return;

@@ -1,31 +1,35 @@
 # zigong.fyi
 
-An independent, **unofficial** multilingual showcase of the city of **Zigong (自贡)**,
-Sichuan, China — home of the world-famous Dinosaur Lantern Festival, a thousand
-years of salt-mining history, and one of the planet's great dinosaur fossil sites.
+An independent, **unofficial** portrait of the living city of **Zigong (自贡)**,
+Sichuan, China — its deep history (salt, dinosaurs), its lantern culture, its
+industry, and its everyday life. Essayistic in tone, written for a primarily
+Chinese-national audience; promoting tourism is not a goal. See `CLAUDE.md` for
+voice/intent.
 
-> **Disclaimer:** This is an independent fan project. It is **not affiliated with,
-> endorsed by, or connected to** the city of Zigong, any government body, the
-> attractions described, or any company.
+> **Disclaimer:** This is an independent, unofficial project. It is **not affiliated
+> with, endorsed by, or connected to** the city of Zigong, any government body, the
+> places described, or any company.
 
 ## Languages
 
-Native content in four languages, English served at the root:
+**Chinese is the authoritative version, served at the root**; the others are prefixed:
 
 | Locale | URL |
 |--------|-----|
-| English | `/` |
-| 中文 | `/zh/` |
+| 中文 (authoritative) | `/` |
+| English | `/en/` |
 | 日本語 | `/ja/` |
 | 한국어 | `/ko/` |
 
 ## Tech
 
-- **[Astro](https://astro.build)** static site (built-in i18n routing), no UI framework.
+- **[Astro](https://astro.build)** static site (built-in i18n routing, `defaultLocale: 'zh'`), no UI framework.
 - **MDX content collections** — one entry per page per locale under
-  `src/content/pages/<locale>/`.
-- Hand-written CSS design system (`src/styles/global.css`) with a lantern-festival
-  palette, CSS variables, and light/dark themes.
+  `src/content/pages/<locale>/`. Organized into **themes** (Heritage, Culture,
+  Industry, Everyday life, People & places) rather than tourist pillars.
+- Hand-written CSS design system (`src/styles/global.css`) — an editorial
+  "refined but warm" look: serif type, ink/paper palette, a single oxblood accent,
+  CSS variables, and light/dark themes.
 - Deployed to **GitHub Pages** at the custom domain **zigong.fyi**.
 
 ## Develop
@@ -46,7 +50,7 @@ npm run check     # astro type/diagnostics check
 | `src/content/pages/{en,zh,ja,ko}/*.mdx` | Page content, one file per page per locale |
 | `src/content.config.ts` | Content collection schema |
 | `src/layouts/BaseLayout.astro` | `<head>`, SEO/OG, hreflang, theme script, nav + footer |
-| `src/components/` | Nav, LanguageSwitcher, ThemeToggle, Footer, Hero, PillarCard, PhotoStrip, ContentPage, HomePage, BusinessDirectory, BusinessCard |
+| `src/components/` | Nav, LanguageSwitcher, ThemeToggle, Footer, Hero, ContentPage, HomePage, BusinessDirectory, BusinessCard, BaiduMap |
 | `src/data/businesses.ts` | Local-business directory data + per-locale copy (scaffold — replace placeholder entries) |
 | `src/i18n/ui.ts` | UI string dictionary (site chrome) |
 | `src/i18n/home.ts` | Home-page copy per locale |

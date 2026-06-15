@@ -1,63 +1,52 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from './Hero.astro';
-import PillarCard from './PillarCard.astro';
-import PhotoStrip from './PhotoStrip.astro';
 import { asLocale, useTranslations, localizedUrl } from '../i18n/utils';
 import { routes } from '../i18n/ui';
-import { home } from '../i18n/home';
+import { home, type ThemeKey } from '../i18n/home';
 
 const locale = asLocale(Astro.currentLocale);
 const t = useTranslations(locale);
 const content = home[locale];
 
-const slugByKey: Record<string, string> = {
-  lantern: routes.lantern,
-  salt: routes.salt,
-  dinosaurs: routes.dinosaurs,
-  kids: routes.kids,
-  tech: routes.tech,
-  businesses: routes.businesses,
+const slugByKey: Record<ThemeKey, string> = {
+  heritage: routes.heritage,
+  culture: routes.culture,
+  industry: routes.industry,
+  everyday: routes.everyday,
+  people: routes.people,
 };
 ---
 
-<BaseLayout accent="lantern">
-  <Hero title={t('site.name')} tagline={content.heroTagline}>
-    <a class="btn btn-primary" href={localizedUrl(locale, routes.lantern)}>{t('nav.lantern')} 🏮</a>
-    <a class="btn btn-ghost" href={localizedUrl(locale, routes.visit)}>{t('nav.visit')}</a>
-  </Hero>
+<BaseLayout>
+  <Hero title={t('site.name')} tagline={content.lead} />
 
   <section class="section">
     <div class="container">
-      <p class="intro container-narrow">{content.intro}</p>
+      <figure class="lead-figure">
+        <img src="/images/overview/cityscape-pano.jpg" alt={content.leadCaption} loading="eager" />
+        <figcaption>{content.leadCaption}</figcaption>
+      </figure>
 
-      <p class="eyebrow" style="margin-top:2rem;">{t('home.pillarsLabel')}</p>
-      <div class="grid grid-pillars" style="margin-top:1.2rem;">
-        {content.pillars.map((p) => (
-          <PillarCard
-            href={localizedUrl(locale, slugByKey[p.key])}
-            emoji={p.emoji}
-            title={p.title}
-            blurb={p.blurb}
-            cta={t('action.explore')}
-            accent={p.key}
-          />
-        ))}
+      <div class="prose overview">
+        {content.overview.map((p) => <p>{p}</p>)}
       </div>
-    </div>
-  </section>
 
-  <section class="section gallery-section">
-    <div class="container">
-      <p class="eyebrow">{t('home.galleryLabel')}</p>
-      <div style="margin-top:1.2rem;">
-        <PhotoStrip items={content.gallery} note={t('home.galleryNote')} />
+      <p class="eyebrow themes-label">{content.themesLabel}</p>
+      <div class="grid grid-themes">
+        {content.themes.map((theme) => (
+          <a class="card" href={localizedUrl(locale, slugByKey[theme.key])}>
+            <h3>{theme.title}</h3>
+            <p>{theme.blurb}</p>
+            <span class="card-go">{theme.title} →</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .intro { font-size: clamp(1.1rem, 2.4vw, 1.3rem); color: var(--text-muted); }
-  .gallery-section { background: var(--bg-subtle); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .overview { font-size: 1.12rem; }
+  .themes-label { margin: clamp(2.5rem, 6vw, 4rem) 0 1.2rem; }
 </style>

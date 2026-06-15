@@ -9,8 +9,8 @@ const pages = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    /** Accent theme + which nav pillar this page belongs to. */
-    accent: z.enum(['lantern', 'salt', 'dinosaurs', 'kids', 'tech']).default('lantern'),
+    /** Legacy field; the design now uses a single site-wide accent. Ignored. */
+    accent: z.string().optional(),
     emoji: z.string().default('🏮'),
     /** Short hero line under the title. */
     tagline: z.string().optional(),

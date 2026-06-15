@@ -10,13 +10,11 @@ const t = useTranslations(locale);
 const year = new Date().getFullYear();
 
 const footerLinks = [
-  { slug: routes.lantern, label: t('nav.lantern') },
-  { slug: routes.salt, label: t('nav.salt') },
-  { slug: routes.dinosaurs, label: t('nav.dinosaurs') },
-  { slug: routes.kids, label: t('nav.kids') },
-  { slug: routes.tech, label: t('nav.tech') },
-  { slug: routes.businesses, label: t('nav.businesses') },
-  { slug: routes.visit, label: t('nav.visit') },
+  { slug: routes.heritage, label: t('nav.heritage') },
+  { slug: routes.culture, label: t('nav.culture') },
+  { slug: routes.industry, label: t('nav.industry') },
+  { slug: routes.everyday, label: t('nav.everyday') },
+  { slug: routes.people, label: t('nav.people') },
   { slug: routes.about, label: t('nav.about') },
 ].map((l) => ({ ...l, href: localizedUrl(locale, l.slug) }));
 ---
@@ -25,11 +23,8 @@ const footerLinks = [
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <span class="lantern" aria-hidden="true"><span class="bulb"></span></span>
-        <div>
-          <p class="footer-name">{t('site.name')}<span class="footer-tld">.fyi</span></p>
-          <p class="footer-tagline">{t('site.tagline')}</p>
-        </div>
+        <p class="footer-name">{t('site.name')}<span class="footer-tld">.fyi</span></p>
+        <p class="footer-tagline">{t('site.tagline')}</p>
       </div>
       <nav class="footer-nav" aria-label={t('nav.menu')}>
         {footerLinks.map((l) => <a href={l.href}>{l.label}</a>)}
@@ -60,39 +55,37 @@ const footerLinks = [
     justify-content: space-between;
     align-items: flex-start;
   }
-  .footer-brand { display: flex; align-items: center; gap: 0.7rem; }
-  .footer-brand .lantern { width: 1.6rem; height: 2rem; }
-  .footer-name { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--text-strong); margin: 0; }
-  .footer-tld { color: var(--lantern); }
-  .footer-tagline { color: var(--text-muted); font-size: 0.9rem; margin: 0; max-width: 32ch; }
+  .footer-name { font-family: var(--font-serif); font-weight: 700; font-size: 1.2rem; color: var(--text-strong); margin: 0; }
+  .footer-tld { color: var(--accent); }
+  .footer-tagline { color: var(--text-muted); font-size: 0.92rem; margin: 0.3rem 0 0; max-width: 38ch; }
 
-  .footer-nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; }
+  .footer-nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; }
   .footer-nav a {
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 0.92rem;
-    font-family: var(--font-display);
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    font-weight: 500;
   }
   .footer-nav a:hover { color: var(--accent-deep); }
 
   .disclaimer {
     margin-top: 1.8rem;
-    padding: 1rem 1.2rem;
-    border: 1px dashed var(--border-strong);
-    border-radius: var(--radius);
-    background: var(--bg-elevated);
-    color: var(--text-muted);
-    font-size: 0.85rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-faint);
+    font-size: 0.84rem;
     max-width: none;
+    font-family: var(--font-sans);
   }
   .footer-meta {
-    margin-top: 1.2rem;
+    margin-top: 1rem;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     color: var(--text-faint);
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     max-width: none;
+    font-family: var(--font-sans);
   }
 </style>

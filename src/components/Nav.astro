@@ -12,13 +12,11 @@ const { locale, currentPath } = Astro.props;
 const t = useTranslations(locale);
 
 const links = [
-  { slug: routes.lantern, label: t('nav.lantern') },
-  { slug: routes.salt, label: t('nav.salt') },
-  { slug: routes.dinosaurs, label: t('nav.dinosaurs') },
-  { slug: routes.kids, label: t('nav.kids') },
-  { slug: routes.tech, label: t('nav.tech') },
-  { slug: routes.businesses, label: t('nav.businesses') },
-  { slug: routes.visit, label: t('nav.visit') },
+  { slug: routes.heritage, label: t('nav.heritage') },
+  { slug: routes.culture, label: t('nav.culture') },
+  { slug: routes.industry, label: t('nav.industry') },
+  { slug: routes.everyday, label: t('nav.everyday') },
+  { slug: routes.people, label: t('nav.people') },
   { slug: routes.about, label: t('nav.about') },
 ].map((l) => ({ ...l, href: localizedUrl(locale, l.slug) }));
 
@@ -30,8 +28,7 @@ const isActive = (href: string) =>
 <header class="site-header">
   <div class="container nav-inner">
     <a class="brand" href={homeHref}>
-      <span class="lantern" aria-hidden="true"><span class="bulb"></span></span>
-      <span class="brand-name">{t('site.name')}<span class="brand-tld">.fyi</span></span>
+      <span class="brand-name">{t('site.name')}</span><span class="brand-tld">.fyi</span>
     </a>
 
     <nav class="primary-nav" aria-label={t('nav.menu')}>
@@ -59,7 +56,7 @@ const isActive = (href: string) =>
     position: sticky;
     top: 0;
     z-index: 100;
-    background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
   }
@@ -67,27 +64,24 @@ const isActive = (href: string) =>
     display: flex;
     align-items: center;
     gap: 1rem;
-    min-height: 4rem;
+    min-height: 3.75rem;
   }
   .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-display);
+    font-family: var(--font-serif);
     font-weight: 700;
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     color: var(--text-strong);
     text-decoration: none;
     white-space: nowrap;
+    letter-spacing: 0.01em;
   }
-  .brand .lantern { width: 1.3rem; height: 1.7rem; }
-  .brand-tld { color: var(--lantern); }
+  .brand-tld { color: var(--accent); }
 
   .primary-nav { margin-left: auto; display: flex; align-items: center; }
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: 0.2rem;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -95,32 +89,31 @@ const isActive = (href: string) =>
   }
   .nav-links a {
     display: inline-block;
-    padding: 0.45rem 0.7rem;
-    border-radius: 999px;
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 0.95rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--radius);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.92rem;
     color: var(--text-muted);
     text-decoration: none;
     transition: color 0.15s ease, background 0.15s ease;
   }
   .nav-links a:hover { color: var(--accent-deep); background: var(--accent-soft); }
-  .nav-links a[aria-current='page'] { color: var(--accent-deep); background: var(--accent-soft); }
+  .nav-links a[aria-current='page'] { color: var(--accent-deep); }
 
   .nav-tools { display: flex; align-items: center; gap: 0.5rem; }
 
-  /* Hamburger button is hidden on desktop; the list shows inline. */
   .nav-toggle { display: none; background: none; border: none; padding: 0; }
 
-  @media (max-width: 920px) {
+  @media (max-width: 880px) {
     .nav-toggle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 2.6rem;
-      height: 2.6rem;
+      width: 2.5rem;
+      height: 2.5rem;
       border: 1px solid var(--border-strong);
-      border-radius: 10px;
+      border-radius: var(--radius);
       cursor: pointer;
       background: var(--bg-elevated);
     }
@@ -144,15 +137,15 @@ const isActive = (href: string) =>
       position: absolute;
       right: var(--gutter);
       left: var(--gutter);
-      top: 4rem;
+      top: 3.75rem;
       flex-direction: column;
       align-items: stretch;
       background: var(--bg-elevated);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow-lg);
-      padding: 0.6rem;
-      gap: 0.1rem;
+      padding: 0.5rem;
+      gap: 0.05rem;
     }
     .nav-links.open a { display: block; }
   }
@@ -170,7 +163,6 @@ const isActive = (href: string) =>
     toggle.addEventListener('click', function () {
       setOpen(toggle.getAttribute('aria-expanded') !== 'true');
     });
-    // Close the mobile menu after following a link or pressing Escape.
     links.addEventListener('click', function (e) {
       if (e.target.closest('a')) setOpen(false);
     });

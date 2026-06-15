@@ -1,64 +1,55 @@
 // Central UI-string dictionary for site chrome (nav, footer, buttons, labels).
-// Page *content* lives in MDX collections; this is only the surrounding UI.
+// Page *content* lives in MDX collections / home.ts; this is only the chrome.
 //
 // Localization discipline (see CLAUDE.md): every key MUST exist in all four
-// locales. When you add a string, add it to en, zh, ja, and ko together.
+// locales. Chinese is the authoritative version; add zh, en, ja, ko together.
 
-export const locales = ['en', 'zh', 'ja', 'ko'] as const;
+export const locales = ['zh', 'en', 'ja', 'ko'] as const;
 export type Locale = (typeof locales)[number];
 
-export const defaultLocale: Locale = 'en';
+export const defaultLocale: Locale = 'zh';
 
-// Human-readable language names, shown in the language switcher.
 export const languageNames: Record<Locale, string> = {
-  en: 'English',
   zh: '中文',
+  en: 'English',
   ja: '日本語',
   ko: '한국어',
 };
 
 // BCP-47 codes for <html lang> and hreflang.
 export const htmlLang: Record<Locale, string> = {
-  en: 'en',
   zh: 'zh-CN',
+  en: 'en',
   ja: 'ja',
   ko: 'ko',
 };
 
-// Page route slugs (shared across locales — the locale prefix is added by routing).
+// Theme route slugs ('' = the Overview / home). Some themes currently point at
+// an existing essay; dedicated section pages arrive in later per-section work.
 export const routes = {
   home: '',
-  lantern: 'lantern-festival',
-  salt: 'salt',
-  dinosaurs: 'dinosaurs',
-  kids: 'kids',
-  tech: 'tech',
-  businesses: 'businesses',
-  visit: 'visit',
+  heritage: 'heritage',
+  culture: 'lantern-festival',
+  industry: 'tech',
+  everyday: 'kids',
+  people: 'businesses',
   about: 'about',
 } as const;
 
 export type UI = {
   'site.name': string;
   'site.tagline': string;
-  'nav.home': string;
-  'nav.lantern': string;
-  'nav.salt': string;
-  'nav.dinosaurs': string;
-  'nav.kids': string;
-  'nav.tech': string;
-  'nav.businesses': string;
-  'nav.visit': string;
+  'nav.overview': string;
+  'nav.heritage': string;
+  'nav.culture': string;
+  'nav.industry': string;
+  'nav.everyday': string;
+  'nav.people': string;
   'nav.about': string;
   'nav.menu': string;
   'lang.label': string;
   'theme.toggle': string;
   'skip.main': string;
-  'action.readMore': string;
-  'action.explore': string;
-  'home.pillarsLabel': string;
-  'home.galleryLabel': string;
-  'home.galleryNote': string;
   'footer.disclaimer': string;
   'footer.disclaimerShort': string;
   'footer.builtBy': string;
@@ -67,120 +58,92 @@ export type UI = {
 };
 
 export const ui: Record<Locale, UI> = {
-  en: {
-    'site.name': 'Zigong',
-    'site.tagline': 'Lanterns, salt & dinosaurs — the vibrant heart of Sichuan',
-    'nav.home': 'Home',
-    'nav.lantern': 'Lantern Festival',
-    'nav.salt': 'Salt City',
-    'nav.dinosaurs': 'Dinosaurs',
-    'nav.kids': 'For Kids',
-    'nav.tech': 'Tech & Innovation',
-    'nav.businesses': 'Local Businesses',
-    'nav.visit': 'Visit',
-    'nav.about': 'About',
-    'nav.menu': 'Menu',
-    'lang.label': 'Language',
-    'theme.toggle': 'Toggle dark mode',
-    'skip.main': 'Skip to main content',
-    'action.readMore': 'Read more',
-    'action.explore': 'Explore',
-    'home.pillarsLabel': 'Discover Zigong',
-    'home.galleryLabel': 'The city in pictures',
-    'home.galleryNote': 'Photography placeholders — real photos coming soon.',
-    'footer.disclaimer':
-      'This is an independent, unofficial fan project celebrating the city of Zigong. It is not affiliated with, endorsed by, or connected to the city of Zigong, any government body, or any company.',
-    'footer.disclaimerShort': 'Independent, unofficial fan project — not affiliated with any government or company.',
-    'footer.builtBy': 'A labour of love for a remarkable city.',
-    'footer.sources': 'Sources & credits',
-    'meta.defaultDescription':
-      'An independent, unofficial guide to Zigong, China — home of the world-famous Dinosaur Lantern Festival, a thousand years of salt-mining history, and real dinosaur fossils.',
-  },
   zh: {
     'site.name': '自贡',
-    'site.tagline': '彩灯、盐都与恐龙——四川的活力之心',
-    'nav.home': '首页',
-    'nav.lantern': '彩灯节',
-    'nav.salt': '千年盐都',
-    'nav.dinosaurs': '恐龙',
-    'nav.kids': '亲子游',
-    'nav.tech': '科技与创新',
-    'nav.businesses': '本地商家',
-    'nav.visit': '出行指南',
+    'site.tagline': '读懂一座中国城市：它的过去、它的劳作、它的日常。',
+    'nav.overview': '概览',
+    'nav.heritage': '历史遗产',
+    'nav.culture': '文化',
+    'nav.industry': '产业',
+    'nav.everyday': '日常生活',
+    'nav.people': '店家与街巷',
     'nav.about': '关于',
     'nav.menu': '菜单',
     'lang.label': '语言',
     'theme.toggle': '切换深色模式',
     'skip.main': '跳转到正文',
-    'action.readMore': '阅读更多',
-    'action.explore': '探索',
-    'home.pillarsLabel': '发现自贡',
-    'home.galleryLabel': '光影里的城市',
-    'home.galleryNote': '此处为占位图片，真实照片即将上线。',
     'footer.disclaimer':
-      '本站是一个独立、非官方的爱好者项目，旨在展现自贡这座城市的魅力。本站与自贡市政府、任何政府机构或任何企业均无隶属、合作或背书关系。',
-    'footer.disclaimerShort': '独立、非官方的爱好者项目——与任何政府机构或企业均无关联。',
-    'footer.builtBy': '献给一座了不起的城市。',
-    'footer.sources': '资料来源与致谢',
+      '本站是一个独立、非官方的项目，旨在理解与呈现自贡这座城市。本站与自贡市政府、任何政府机构或任何企业均无隶属、合作或背书关系。',
+    'footer.disclaimerShort': '独立、非官方项目——与任何政府机构或企业均无关联。',
+    'footer.builtBy': '出于对一座城市的好奇而作。',
+    'footer.sources': '资料来源',
     'meta.defaultDescription':
-      '一份独立、非官方的自贡城市指南——这里有举世闻名的自贡国际恐龙灯会、千年井盐开采史，以及真正的恐龙化石。',
+      '一个独立、非官方的视角，细致观察中国自贡这座鲜活的城市——它的盐与恐龙的深远历史、彩灯文化、产业，以及日常生活。',
+  },
+  en: {
+    'site.name': 'Zigong',
+    'site.tagline': 'Understanding a Chinese city — its past, its work, its daily life.',
+    'nav.overview': 'Overview',
+    'nav.heritage': 'Heritage',
+    'nav.culture': 'Culture',
+    'nav.industry': 'Industry',
+    'nav.everyday': 'Everyday life',
+    'nav.people': 'People & places',
+    'nav.about': 'About',
+    'nav.menu': 'Menu',
+    'lang.label': 'Language',
+    'theme.toggle': 'Toggle dark mode',
+    'skip.main': 'Skip to main content',
+    'footer.disclaimer':
+      'This is an independent, unofficial project that tries to understand and portray the city of Zigong. It is not affiliated with, endorsed by, or connected to the city of Zigong, any government body, or any company.',
+    'footer.disclaimerShort': 'Independent, unofficial project — not affiliated with any government or company.',
+    'footer.builtBy': 'Made out of curiosity about a city.',
+    'footer.sources': 'Sources',
+    'meta.defaultDescription':
+      'An independent, unofficial look at Zigong, China — a closely observed portrait of a living city: its salt-and-dinosaur deep history, its lantern culture, its industry, and its everyday life.',
   },
   ja: {
     'site.name': '自貢',
-    'site.tagline': 'ランタン・塩・恐竜——四川のいきいきとした中心地',
-    'nav.home': 'ホーム',
-    'nav.lantern': 'ランタン祭り',
-    'nav.salt': '塩の都',
-    'nav.dinosaurs': '恐竜',
-    'nav.kids': '子ども向け',
-    'nav.tech': '技術と革新',
-    'nav.businesses': '地元のお店',
-    'nav.visit': '旅のヒント',
+    'site.tagline': 'ある中国の都市を理解する——その歴史、その営み、その日常。',
+    'nav.overview': '概観',
+    'nav.heritage': '遺産',
+    'nav.culture': '文化',
+    'nav.industry': '産業',
+    'nav.everyday': '暮らし',
+    'nav.people': '店と街の人',
     'nav.about': 'このサイトについて',
     'nav.menu': 'メニュー',
     'lang.label': '言語',
     'theme.toggle': 'ダークモード切り替え',
     'skip.main': '本文へスキップ',
-    'action.readMore': '続きを読む',
-    'action.explore': '見てみる',
-    'home.pillarsLabel': '自貢を知る',
-    'home.galleryLabel': '写真で見る街',
-    'home.galleryNote': 'これらは仮の画像です。実際の写真は近日公開予定。',
     'footer.disclaimer':
-      '本サイトは、自貢市の魅力を紹介する独立した非公式のファンプロジェクトです。自貢市、いかなる政府機関、いかなる企業とも提携・関連・推奨関係はありません。',
-    'footer.disclaimerShort': '独立した非公式のファンプロジェクト——政府・企業とは一切無関係です。',
-    'footer.builtBy': 'すばらしい街への愛を込めて。',
-    'footer.sources': '出典とクレジット',
+      '本サイトは、自貢市を理解し描こうとする独立した非公式のプロジェクトです。自貢市、いかなる政府機関、いかなる企業とも提携・関連・推奨関係はありません。',
+    'footer.disclaimerShort': '独立した非公式プロジェクト——政府・企業とは一切無関係です。',
+    'footer.builtBy': 'ひとつの街への好奇心から。',
+    'footer.sources': '出典',
     'meta.defaultDescription':
-      '中国・自貢市の独立した非公式ガイド。世界的に有名な恐竜ランタン祭り、千年にわたる製塩の歴史、本物の恐竜化石の街。',
+      '中国・自貢を見つめる独立した非公式の試み——塩と恐竜の深い歴史、ランタン文化、産業、そして日常を見つめる、生きた都市の肖像。',
   },
   ko: {
     'site.name': '쯔궁',
-    'site.tagline': '등불·소금·공룡 — 쓰촨의 활기찬 심장',
-    'nav.home': '홈',
-    'nav.lantern': '등불 축제',
-    'nav.salt': '소금의 도시',
-    'nav.dinosaurs': '공룡',
-    'nav.kids': '아이들과 함께',
-    'nav.tech': '기술과 혁신',
-    'nav.businesses': '지역 상점',
-    'nav.visit': '여행 안내',
+    'site.tagline': '한 중국 도시를 이해하기 — 그 역사, 그 노동, 그 일상.',
+    'nav.overview': '개관',
+    'nav.heritage': '유산',
+    'nav.culture': '문화',
+    'nav.industry': '산업',
+    'nav.everyday': '일상',
+    'nav.people': '가게와 거리',
     'nav.about': '소개',
     'nav.menu': '메뉴',
     'lang.label': '언어',
     'theme.toggle': '다크 모드 전환',
     'skip.main': '본문으로 건너뛰기',
-    'action.readMore': '더 보기',
-    'action.explore': '둘러보기',
-    'home.pillarsLabel': '쯔궁 둘러보기',
-    'home.galleryLabel': '사진으로 보는 도시',
-    'home.galleryNote': '임시 이미지입니다. 실제 사진은 곧 공개됩니다.',
     'footer.disclaimer':
-      '이 사이트는 쯔궁시의 매력을 소개하는 독립적이고 비공식적인 팬 프로젝트입니다. 쯔궁시, 어떤 정부 기관, 어떤 기업과도 제휴·연관·후원 관계가 없습니다.',
-    'footer.disclaimerShort': '독립적·비공식 팬 프로젝트 — 어떤 정부나 기업과도 무관합니다.',
-    'footer.builtBy': '멋진 도시를 향한 애정으로 만들었습니다.',
-    'footer.sources': '출처 및 크레딧',
+      '이 사이트는 쯔궁시를 이해하고 그려 보려는 독립적이고 비공식적인 프로젝트입니다. 쯔궁시, 어떤 정부 기관, 어떤 기업과도 제휴·연관·후원 관계가 없습니다.',
+    'footer.disclaimerShort': '독립적·비공식 프로젝트 — 어떤 정부나 기업과도 무관합니다.',
+    'footer.builtBy': '한 도시에 대한 호기심에서.',
+    'footer.sources': '출처',
     'meta.defaultDescription':
-      '중국 쯔궁시에 대한 독립적·비공식 안내서 — 세계적으로 유명한 공룡 등불 축제, 천 년의 소금 채굴 역사, 진짜 공룡 화석의 도시.',
+      '중국 쯔궁을 들여다보는 독립적·비공식 시도 — 소금과 공룡의 깊은 역사, 등불 문화, 산업, 그리고 일상을 담은, 살아 있는 도시의 초상.',
   },
 };

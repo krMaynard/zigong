@@ -1,90 +1,87 @@
-// Home-page copy per locale: intro + pillar teaser blurbs + gallery captions.
-// Kept separate from ui.ts (site chrome) for readability.
+// Home (Overview) copy per locale: the framing essay + the theme index cards.
 import type { Locale } from './ui';
 
+export type ThemeKey = 'heritage' | 'culture' | 'industry' | 'everyday' | 'people';
+
 export interface HomeContent {
-  heroTagline: string;
-  intro: string;
-  pillars: { key: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech' | 'businesses'; emoji: string; title: string; blurb: string }[];
-  gallery: { emoji: string; caption: string }[];
+  /** Short lead under the title (the hero). */
+  lead: string;
+  /** Caption for the lead cityscape photo. */
+  leadCaption: string;
+  /** The framing overview essay, as paragraphs. */
+  overview: string[];
+  /** Label above the theme index. */
+  themesLabel: string;
+  themes: { key: ThemeKey; title: string; blurb: string }[];
 }
 
 export const home: Record<Locale, HomeContent> = {
-  en: {
-    heroTagline:
-      'A city in Sichuan where giant glowing lanterns, a thousand years of salt wells, and real dinosaurs all share the same streets.',
-    intro:
-      "Zigong (自贡) is one of China's great surprises — a mid-sized Sichuan city with an outsized story. It lit the world's lanterns, drilled the planet's first deep wells for brine and natural gas, and sits atop one of the richest dinosaur fossil beds ever found. Here are five ways in.",
-    pillars: [
-      { key: 'lantern', emoji: '🏮', title: 'Lantern Festival', blurb: 'The dazzling Zigong International Dinosaur Lantern Festival — colossal illuminated sculptures that draw millions every spring.' },
-      { key: 'salt', emoji: '🧂', title: 'Salt City', blurb: 'A thousand years of well-salt ingenuity, from the record-breaking Shenhai Well to the museums that tell the story.' },
-      { key: 'dinosaurs', emoji: '🦕', title: 'Dinosaurs', blurb: 'A world-class fossil site and a museum built right over the dig — Zigong is a genuine Jurassic treasure trove.' },
-      { key: 'kids', emoji: '👧', title: 'For Kids', blurb: 'Dinosaurs, lanterns, parks and hands-on fun — Zigong is a brilliant city to explore with children.' },
-      { key: 'tech', emoji: '🔬', title: 'Tech & Innovation', blurb: 'From ancient deep-drilling engineering to modern industry — a city that has always tinkered with the future.' },
-      { key: 'businesses', emoji: '🛍️', title: 'Local Businesses', blurb: 'A growing directory of the workshops, restaurants, and makers that give the city its flavour.' },
+  zh: {
+    lead: '盐、恐龙与彩灯之外，一座仍在劳作与生活的川南城市。',
+    leadCaption: '自贡城区一瞥——市街向远处的丘陵与厂区延展。',
+    overview: [
+      '自贡常被一句话概括——“盐都”“恐龙之乡”“灯城”。这些标签都对，却都太轻。一座城市从不只是它的名片，而是盐井下沉的深度、车间里的节奏、清晨面馆升起的热气，以及生活在这一切之中的人。',
+      '这里真正耐人寻味的，是许多不同的时间尺度叠在同一片土地上：一亿多年前的恐龙骨床，近两千年的井盐开采，十九世纪凿成的千米深井，二十世纪的重工业，以及今天仍在运转的工厂、市场与街巷。它们并未先后退场，而是层层相叠，至今共存。',
+      '本站尝试以一个好奇而用心的旁观者的目光去理解这座城——它的过去如何塑造了今天，它的产业与日常又如何让它依旧鲜活。这不是一份旅游指南，而是一次细看。',
     ],
-    gallery: [
-      { emoji: '🏮', caption: 'Lanterns over the festival grounds' },
-      { emoji: '🦕', caption: 'Inside the Zigong Dinosaur Museum' },
-      { emoji: '🧂', caption: 'The historic Shenhai Well' },
-      { emoji: '🌶️', caption: 'Fiery Zigong-style Sichuan cooking' },
+    themesLabel: '从这里走近',
+    themes: [
+      { key: 'heritage', title: '历史遗产', blurb: '从中侏罗世的恐龙骨床，到千年井盐与十九世纪的千米深井——这座城市深远的时间。' },
+      { key: 'culture', title: '文化', blurb: '自贡彩灯，既是节庆，也是一门活着的手艺与城市身份。' },
+      { key: 'industry', title: '产业', blurb: '从古代凿井工程到今日工业——一座始终动手营生的城市。' },
+      { key: 'everyday', title: '日常生活', blurb: '麻辣鲜香的盐帮菜、孩子的去处、街市的节奏——城市鲜活的一面。' },
+      { key: 'people', title: '店家与街巷', blurb: '构成这座城市的店家、手艺人与去处。' },
     ],
   },
-  zh: {
-    heroTagline: '在四川的这座城市里，巨型彩灯、千年盐井与真正的恐龙，共享同一条街道。',
-    intro:
-      '自贡，是中国最令人惊喜的城市之一——一座中等规模的四川城市，却拥有非凡的故事。它点亮了世界的彩灯，钻出了地球上最早的深井以汲取卤水和天然气，更坐落在世界上最丰富的恐龙化石带之一。以下是走近自贡的五种方式。',
-    pillars: [
-      { key: 'lantern', emoji: '🏮', title: '彩灯节', blurb: '璀璨夺目的自贡国际恐龙灯会——巨型灯组流光溢彩，每年春天吸引数百万游客。' },
-      { key: 'salt', emoji: '🧂', title: '千年盐都', blurb: '千年井盐智慧，从创下纪录的燊海井，到讲述这段历史的盐业博物馆。' },
-      { key: 'dinosaurs', emoji: '🦕', title: '恐龙', blurb: '世界级的化石遗址，博物馆就建在发掘现场之上——自贡是名副其实的侏罗纪宝库。' },
-      { key: 'kids', emoji: '👧', title: '亲子游', blurb: '恐龙、彩灯、公园与亲手体验——自贡是一座非常适合带孩子探索的城市。' },
-      { key: 'tech', emoji: '🔬', title: '科技与创新', blurb: '从古代深井钻探工程，到现代工业——这座城市始终在为未来动手钻研。' },
-      { key: 'businesses', emoji: '🛍️', title: '本地商家', blurb: '一份不断扩充的名录，收录赋予这座城市独特风味的工坊、餐馆与匠人。' },
+  en: {
+    lead: 'Beyond salt, dinosaurs, and lanterns: a southern-Sichuan city still at work and at home.',
+    leadCaption: 'Zigong from above — the city reaching toward the hills and the distant works.',
+    overview: [
+      'Zigong is usually summed up in a phrase — “salt capital,” “home of dinosaurs,” “city of lanterns.” Each label is true, and each is too light. A city is never its slogans; it is the depth of a brine well, the rhythm of a workshop floor, the steam rising from a noodle shop at dawn, and the people who live among all of it.',
+      'What makes the place compelling is how many timescales rest on the same ground: a dinosaur bonebed from over a hundred million years ago, nearly two thousand years of well-salt, a kilometre-deep borehole drilled in the 1830s, a century of heavy industry, and the factories, markets, and streets still working today. None of these simply gave way to the next; they lie in layers, still coexisting.',
+      'This site tries to understand the city through the eyes of a curious, attentive observer — how its past shaped its present, and how its industry and daily life keep it alive. It is not a travel guide. It is a closer look.',
     ],
-    gallery: [
-      { emoji: '🏮', caption: '灯会现场的璀璨彩灯' },
-      { emoji: '🦕', caption: '自贡恐龙博物馆内景' },
-      { emoji: '🧂', caption: '历史悠久的燊海井' },
-      { emoji: '🌶️', caption: '麻辣鲜香的自贡盐帮菜' },
+    themesLabel: 'Ways in',
+    themes: [
+      { key: 'heritage', title: 'Heritage', blurb: 'From a Middle-Jurassic bonebed to a thousand years of well-salt and an 1830s kilometre-deep well — the city’s deep time.' },
+      { key: 'culture', title: 'Culture', blurb: 'The Zigong lanterns: a festival, yes, but also a living craft and a civic identity.' },
+      { key: 'industry', title: 'Industry', blurb: 'From ancient drilling engineering to modern industry — a city that has always made its living by hand.' },
+      { key: 'everyday', title: 'Everyday life', blurb: 'Fiery Salt-Gang cooking, places for children, the rhythm of the market — the city as it is lived.' },
+      { key: 'people', title: 'People & places', blurb: 'The shops, makers, and places that make up the living city.' },
     ],
   },
   ja: {
-    heroTagline: '四川のこの街では、巨大に輝くランタン、千年の塩井戸、そして本物の恐竜が、同じ通りを分かち合っています。',
-    intro:
-      '自貢（じこう）は、中国でもっとも意外性に満ちた街のひとつです。四川の中規模都市ながら、並外れた物語を持っています。世界のランタンを灯し、地球で最初の深井戸を掘って塩水と天然ガスを汲み上げ、そして世界有数の豊かな恐竜化石層の上に立っています。ここでは、自貢への5つの入り口を紹介します。',
-    pillars: [
-      { key: 'lantern', emoji: '🏮', title: 'ランタン祭り', blurb: 'きらびやかな自貢国際恐竜ランタン祭り。巨大な光の造形が、毎年春に何百万もの人々を惹きつけます。' },
-      { key: 'salt', emoji: '🧂', title: '塩の都', blurb: '記録的な燊海井から、その歴史を伝える博物館まで——千年にわたる井戸塩の知恵。' },
-      { key: 'dinosaurs', emoji: '🦕', title: '恐竜', blurb: '世界クラスの化石産地で、発掘現場の真上に建つ博物館。自貢はまさにジュラ紀の宝庫です。' },
-      { key: 'kids', emoji: '👧', title: '子ども向け', blurb: '恐竜、ランタン、公園、体験型の楽しみ——自貢は子どもと巡るのにすばらしい街です。' },
-      { key: 'tech', emoji: '🔬', title: '技術と革新', blurb: '古代の深掘削技術から現代産業まで——つねに未来を手で探ってきた街。' },
-      { key: 'businesses', emoji: '🛍️', title: '地元のお店', blurb: '街の味わいを生み出す工房・飲食店・作り手を集めた、少しずつ育つディレクトリ。' },
+    lead: '塩・恐竜・ランタンの先にある、今も働き、暮らす四川南部の都市。',
+    leadCaption: '高所から望む自貢——市街が遠くの丘陵と工場地帯へと続く。',
+    overview: [
+      '自貢はたいてい一言で語られる——「塩の都」「恐竜の郷」「ランタンの街」。どれも本当で、どれも軽すぎる。都市はスローガンではない。塩井戸の深さであり、工房の床に流れるリズムであり、明け方の麺屋から立ちのぼる湯気であり、そのすべての中で暮らす人々だ。',
+      'この街を惹きつけるものは、同じ大地の上にいくつもの時間尺度が重なっていることだ。一億年以上前の恐竜化石層、二千年近い井戸塩、一八三〇年代に掘られた一キロメートルの井戸、一世紀にわたる重工業、そして今も動く工場・市場・街路。どれも次のものに席を譲って消えたのではなく、層をなして今も共存している。',
+      '本サイトは、好奇心を持つ注意深い観察者の目を通してこの街を理解しようとする——過去がいかに現在を形づくり、産業と日常がいかに街を生かし続けているかを。旅行ガイドではない。もっと近くからの一瞥である。',
     ],
-    gallery: [
-      { emoji: '🏮', caption: '祭り会場を彩るランタン' },
-      { emoji: '🦕', caption: '自貢恐竜博物館の館内' },
-      { emoji: '🧂', caption: '歴史ある燊海井' },
-      { emoji: '🌶️', caption: '辛さ際立つ自貢の四川料理' },
+    themesLabel: 'ここから',
+    themes: [
+      { key: 'heritage', title: '遺産', blurb: '中期ジュラ紀の化石層から、千年の井戸塩、一八三〇年代の一キロ井戸まで——街の深い時間。' },
+      { key: 'culture', title: '文化', blurb: '自貢のランタン。祭りであり、同時に生きた手仕事であり、街の自己像でもある。' },
+      { key: 'industry', title: '産業', blurb: '古代の掘削技術から現代産業まで——つねに手で生計を立ててきた街。' },
+      { key: 'everyday', title: '暮らし', blurb: '辛く香り高い塩帮菜、子どもの居場所、市場のリズム——生きられている街。' },
+      { key: 'people', title: '店と街の人', blurb: '生きた街を形づくる店・作り手・場所。' },
     ],
   },
   ko: {
-    heroTagline: '쓰촨의 이 도시에서는 거대하게 빛나는 등불, 천 년의 소금 우물, 그리고 진짜 공룡이 같은 거리를 함께 나눕니다.',
-    intro:
-      '쯔궁(自贡)은 중국에서 가장 의외의 매력을 지닌 도시 중 하나입니다. 쓰촨의 중간 규모 도시이지만, 그 이야기는 결코 작지 않습니다. 세계의 등불을 밝혔고, 지구에서 가장 먼저 깊은 우물을 뚫어 소금물과 천연가스를 끌어올렸으며, 세계에서 가장 풍부한 공룡 화석층 위에 자리하고 있습니다. 쯔궁으로 들어가는 다섯 가지 길을 소개합니다.',
-    pillars: [
-      { key: 'lantern', emoji: '🏮', title: '등불 축제', blurb: '눈부신 쯔궁 국제 공룡 등불 축제 — 거대한 빛의 조형물이 매년 봄 수백만 명을 불러 모읍니다.' },
-      { key: 'salt', emoji: '🧂', title: '소금의 도시', blurb: '기록을 세운 선하이 우물부터 그 역사를 들려주는 박물관까지 — 천 년에 걸친 우물 소금의 지혜.' },
-      { key: 'dinosaurs', emoji: '🦕', title: '공룡', blurb: '세계적인 화석 유적지와 발굴 현장 바로 위에 지은 박물관 — 쯔궁은 진정한 쥐라기의 보고입니다.' },
-      { key: 'kids', emoji: '👧', title: '아이들과 함께', blurb: '공룡, 등불, 공원, 체험 거리 — 쯔궁은 아이와 함께 둘러보기에 멋진 도시입니다.' },
-      { key: 'tech', emoji: '🔬', title: '기술과 혁신', blurb: '고대의 심정 굴착 기술부터 현대 산업까지 — 언제나 손수 미래를 탐구해 온 도시.' },
-      { key: 'businesses', emoji: '🛍️', title: '지역 상점', blurb: '도시의 풍미를 빚어내는 공방·식당·장인을 담은, 점점 자라나는 디렉터리.' },
+    lead: '소금·공룡·등불 너머, 여전히 일하고 살아가는 쓰촨 남부의 도시.',
+    leadCaption: '높은 곳에서 본 쯔궁 — 시가지가 멀리 구릉과 공장 지대로 이어진다.',
+    overview: [
+      '쯔궁은 흔히 한마디로 요약된다 — “소금의 도시”, “공룡의 고향”, “등불의 도시”. 모두 사실이지만, 모두 너무 가볍다. 도시는 구호가 아니다. 그것은 소금 우물의 깊이이고, 작업장 바닥에 흐르는 리듬이며, 새벽 국숫집에서 피어오르는 김이고, 그 모든 것 속에서 살아가는 사람들이다.',
+      '이 도시가 흥미로운 까닭은 같은 땅 위에 여러 시간 척도가 겹쳐 있다는 데 있다. 1억 년도 더 된 공룡 화석층, 거의 이천 년에 이르는 우물 소금, 1830년대에 뚫은 1킬로미터 깊이의 우물, 한 세기의 중공업, 그리고 지금도 돌아가는 공장과 시장과 거리. 어느 것도 다음 것에 자리를 내주고 사라지지 않았다. 층층이 쌓인 채 지금도 공존한다.',
+      '이 사이트는 호기심 많고 주의 깊은 관찰자의 눈으로 이 도시를 이해해 보려 한다 — 과거가 어떻게 현재를 빚었고, 산업과 일상이 어떻게 도시를 살아 있게 하는지를. 여행 안내서가 아니다. 조금 더 가까이에서 들여다보는 일이다.',
     ],
-    gallery: [
-      { emoji: '🏮', caption: '축제장을 수놓은 등불' },
-      { emoji: '🦕', caption: '쯔궁 공룡 박물관 내부' },
-      { emoji: '🧂', caption: '유서 깊은 선하이 우물' },
-      { emoji: '🌶️', caption: '얼얼하고 매운 쯔궁식 쓰촨 요리' },
+    themesLabel: '들어가기',
+    themes: [
+      { key: 'heritage', title: '유산', blurb: '중기 쥐라기 화석층에서 천 년의 우물 소금, 1830년대의 1킬로미터 우물까지 — 도시의 깊은 시간.' },
+      { key: 'culture', title: '문화', blurb: '쯔궁의 등불. 축제이자, 동시에 살아 있는 솜씨이며, 도시의 정체성이다.' },
+      { key: 'industry', title: '산업', blurb: '고대의 굴착 기술부터 현대 산업까지 — 늘 손으로 생계를 꾸려 온 도시.' },
+      { key: 'everyday', title: '일상', blurb: '얼얼하고 향 깊은 옌방차이, 아이들의 공간, 시장의 리듬 — 살아가는 도시.' },
+      { key: 'people', title: '가게와 거리', blurb: '살아 있는 도시를 이루는 가게와 장인, 그리고 장소들.' },
     ],
   },
 };

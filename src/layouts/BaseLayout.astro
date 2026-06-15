@@ -8,14 +8,14 @@ import { htmlLang, locales, type Locale } from '../i18n/ui';
 interface Props {
   title?: string;
   description?: string;
-  /** Per-pillar accent: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech' | 'businesses' */
-  accent?: 'lantern' | 'salt' | 'dinosaurs' | 'kids' | 'tech' | 'businesses';
+  /** Accepted for compatibility; the design now uses a single site-wide accent. */
+  accent?: string;
   ogImage?: string;
 }
 
 const locale = asLocale(Astro.currentLocale);
 const t = useTranslations(locale);
-const { title, description, accent, ogImage } = Astro.props;
+const { title, description, ogImage } = Astro.props;
 
 const siteName = t('site.name');
 const pageTitle = title ? `${title} · ${t('site.name')} — zigong.fyi` : `${siteName} — zigong.fyi`;
@@ -31,18 +31,18 @@ const xDefault = new URL(switchLocalePath(path, locale, 'en'), Astro.site).href;
 const canonical = new URL(path, Astro.site).href;
 const ogImageUrl = new URL(ogImage ?? '/og-default.svg', Astro.site).href;
 
-// Locale-appropriate body font (CJK/KR coverage), display font shared.
-const notoByLocale: Record<Locale, string> = {
-  en: 'Noto+Sans:wght@400;600;700',
-  zh: 'Noto+Sans+SC:wght@400;600;700',
-  ja: 'Noto+Sans+JP:wght@400;600;700',
-  ko: 'Noto+Sans+KR:wght@400;600;700',
+// Serif type: Spectral for Latin, plus the locale's Noto Serif for CJK/KR.
+const notoSerif: Record<Locale, string> = {
+  en: '',
+  zh: '&family=Noto+Serif+SC:wght@400;600;700',
+  ja: '&family=Noto+Serif+JP:wght@400;600;700',
+  ko: '&family=Noto+Serif+KR:wght@400;600;700',
 };
-const fontHref = `https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=${notoByLocale[locale]}&display=swap`;
+const fontHref = `https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400${notoSerif[locale]}&display=swap`;
 ---
 
 <!doctype html>
-<html lang={htmlLang[locale]} data-accent={accent ?? 'lantern'}>
+<html lang={htmlLang[locale]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -64,17 +64,6 @@ const fontHref = `https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;
         }
       })();
     </script>
-
-    <!-- Per-pillar accent override: map data-accent → --accent vars.
-         --accent-soft is derived from the (theme-adjusted) accent so it works in
-         both light and dark without a separate dark rule. -->
-    <style is:inline>
-      [data-accent='salt'] { --accent: var(--jade); --accent-deep: color-mix(in srgb, var(--jade) 78%, black); --accent-soft: color-mix(in srgb, var(--jade) 14%, transparent); }
-      [data-accent='dinosaurs'] { --accent: var(--ink-blue); --accent-deep: color-mix(in srgb, var(--ink-blue) 78%, black); --accent-soft: color-mix(in srgb, var(--ink-blue) 14%, transparent); }
-      [data-accent='kids'] { --accent: var(--plum); --accent-deep: color-mix(in srgb, var(--plum) 78%, black); --accent-soft: color-mix(in srgb, var(--plum) 14%, transparent); }
-      [data-accent='tech'] { --accent: var(--jade); --accent-deep: color-mix(in srgb, var(--jade) 78%, black); --accent-soft: color-mix(in srgb, var(--jade) 14%, transparent); }
-      [data-accent='businesses'] { --accent: var(--gold); --accent-deep: color-mix(in srgb, var(--gold) 52%, black); --accent-soft: color-mix(in srgb, var(--gold) 18%, transparent); }
-    </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

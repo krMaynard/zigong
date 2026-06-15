@@ -91,7 +91,7 @@ export interface DirectoryCopy {
 
 export const directory: Record<Locale, DirectoryCopy> = {
   en: {
-    title: 'Local Businesses',
+    title: 'People & places',
     description:
       'An independent, growing directory of local businesses in Zigong, China — the shops, makers, and places that give the city its character.',
     tagline: 'The people and places behind the city — a directory in progress.',
@@ -109,7 +109,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
     baiduLink: 'View on Baidu Maps',
   },
   zh: {
-    title: '本地商家',
+    title: '店家与街巷',
     description:
       '一份独立、不断扩充的自贡本地商家名录——记录赋予这座城市独特个性的店铺、匠人与去处。',
     tagline: '城市背后的人与去处——一份正在完善的名录。',
@@ -126,7 +126,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
     baiduLink: '在百度地图查看',
   },
   ja: {
-    title: '地元のお店',
+    title: '店と街の人',
     description:
       '自貢の地元のお店を集めた、独立した少しずつ育つディレクトリ——街に個性を与える店・作り手・場所を記録します。',
     tagline: '街を支える人と場所——制作中のディレクトリ。',
@@ -143,7 +143,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
     baiduLink: 'Baidu マップで見る',
   },
   ko: {
-    title: '지역 상점',
+    title: '가게와 거리',
     description:
       '쯔궁의 지역 상점을 모은, 독립적이고 점점 자라나는 디렉터리 — 도시에 개성을 더하는 가게·장인·장소를 기록합니다.',
     tagline: '도시를 떠받치는 사람과 장소 — 만들어 가는 디렉터리.',
