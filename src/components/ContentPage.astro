@@ -29,7 +29,13 @@ const { title, description, accent, emoji, tagline, sources } = entry.data;
         <aside class="sources" aria-label={t('footer.sources')}>
           <h2 class="sources-title">{t('footer.sources')}</h2>
           <ul>
-            {sources.map((s) => <li>{s}</li>)}
+            {sources.map((s) =>
+              typeof s === 'string' ? (
+                <li>{s}</li>
+              ) : (
+                <li><a href={s.url} target="_blank" rel="noopener">{s.text}</a></li>
+              ),
+            )}
           </ul>
         </aside>
       )}

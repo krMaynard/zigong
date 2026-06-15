@@ -68,6 +68,8 @@ Everyday→`kids`) pending dedicated section pages + deeper rewrites. There is *
 
 - Content is an independent guide built from **public sources**. Cite sources in
   each page's `sources` front-matter array; they render at the foot of the page.
+  Each entry is plain text **or** a `{ text, url }` pair — prefer the pair so the
+  source renders as a working link to the original.
 - Before changing factual claims (festival dates, well depths, museum details),
   verify against a current source — don't assert from memory.
 
