@@ -26,8 +26,8 @@ Always credit as the author's own ("作者摄 / Author's photo") in captions.
 | `heritage/dino-museum-exterior.jpg` | Dinosaur Museum exterior — shell-like roof over the Dashanpu dig | Heritage / Dinosaurs | **Used** — Dinosaurs essay |
 | `heritage/dino-skull.jpg` | Carnivore fossil skull in a display case | Heritage / Dinosaurs | reserved |
 | `heritage/dino-museum-preface.jpg` | The museum's "前言 / Preface" plaque (zh/en/ja) | Heritage / Dinosaurs | reserved |
-| `industry/reservoir-construction.jpg` | Reservoir/dam under construction in a quarried hillside; slogan "兴修水利 利国利民" | Industry | reserved |
-| `industry/cement-plant-silos.jpg` | Cement/concrete batching plant silos, low angle | Industry | reserved |
+| `industry/reservoir-construction.jpg` | Reservoir/dam under construction in a quarried hillside; slogan "兴修水利 利国利民" | Industry | **Used** — Industry essay |
+| `industry/cement-plant-silos.jpg` | Cement/concrete batching plant silos, low angle | Industry | **Used** — Industry essay |
 
 ### Batch 2 — 2017 Lantern Festival (23rd Zigong Int'l Dinosaur Lantern Festival) + night city
 
