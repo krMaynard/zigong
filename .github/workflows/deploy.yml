@@ -27,6 +27,12 @@ jobs:
       - name: Build Astro site
         uses: withastro/action@v4
         # withastro/action installs deps, builds, and uploads the Pages artifact.
+        env:
+          # Baidu Maps key for the business-listing embed. Optional: if the
+          # secret is unset, the build still succeeds and listings show a
+          # "View on Baidu Maps" link instead of an interactive map.
+          # Add it under Settings → Secrets and variables → Actions.
+          PUBLIC_BAIDU_MAPS_AK: ${{ secrets.PUBLIC_BAIDU_MAPS_AK }}
 
   deploy:
     needs: build
