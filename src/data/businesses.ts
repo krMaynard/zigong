@@ -45,14 +45,7 @@ export const categoryLabels: Record<BizCategory, Loc> = {
   stay: { en: 'Places to stay', zh: '住宿', ja: '宿泊', ko: '숙소' },
 };
 
-const AREA = {
-  ziliujing: { en: 'Ziliujing District', zh: '自流井区', ja: '自流井区', ko: '쯔류징구' },
-  gongjing: { en: 'Gongjing District', zh: '贡井区', ja: '貢井区', ko: '궁징구' },
-  daan: { en: "Da'an District", zh: '大安区', ja: '大安区', ko: '다안구' },
-  yantan: { en: 'Yantan District', zh: '沿滩区', ja: '沿灘区', ko: '옌탄구' },
-} satisfies Record<string, Loc>;
-
-// Real, verified listings first, then example placeholders to fill in.
+// Verified listings. Add new entries here (keep all four locales in sync).
 export const businesses: Business[] = [
   {
     id: 'xingkong-baseball',
@@ -79,90 +72,6 @@ export const businesses: Business[] = [
       ko: '타격 네트와 케이지, 티를 갖춘 실내 야구 센터 — 온 가족이 활기차게 즐길 나들이 장소이자 지역 “선룽” 팀의 홈입니다.',
     },
   },
-  {
-    id: 'example-lantern-workshop',
-    category: 'lanterns',
-    emoji: '🏮',
-    placeholder: true,
-    area: AREA.daan,
-    name: { en: 'Example Lantern Workshop', zh: '示例彩灯工坊', ja: '見本ランタン工房', ko: '예시 등불 공방' },
-    blurb: {
-      en: 'A lantern-making studio or exporter — the craft Zigong is famous for. Your listing could go here.',
-      zh: '一家彩灯制作工作室或出口商——自贡引以为傲的技艺。这里可以放置您的信息。',
-      ja: 'ランタン制作スタジオや輸出業者——自貢が誇る技です。ここにあなたの情報を掲載できます。',
-      ko: '등불 제작 스튜디오 또는 수출업체 — 쯔궁이 자랑하는 솜씨입니다. 이 자리에 정보를 실을 수 있습니다.',
-    },
-  },
-  {
-    id: 'example-saltgang-restaurant',
-    category: 'food',
-    emoji: '🍲',
-    placeholder: true,
-    area: AREA.ziliujing,
-    name: { en: 'Example Salt-Gang Restaurant', zh: '示例盐帮菜餐馆', ja: '見本・塩帮菜レストラン', ko: '예시 옌방차이 식당' },
-    blurb: {
-      en: 'A restaurant serving Zigong’s fiery Salt-Gang cuisine. Your listing could go here.',
-      zh: '一家供应自贡麻辣盐帮菜的餐馆。这里可以放置您的信息。',
-      ja: '自貢の辛い塩帮菜を出すレストラン。ここにあなたの情報を掲載できます。',
-      ko: '쯔궁의 매운 옌방차이를 내는 식당. 이 자리에 정보를 실을 수 있습니다.',
-    },
-  },
-  {
-    id: 'example-snack-shop',
-    category: 'snacks',
-    emoji: '🌶️',
-    placeholder: true,
-    area: AREA.gongjing,
-    name: { en: 'Example Snack Shop', zh: '示例小吃店', ja: '見本・軽食店', ko: '예시 분식점' },
-    blurb: {
-      en: 'A spot for local snacks like cold-dressed rabbit (冷吃兔) and other specialties. Your listing could go here.',
-      zh: '一家售卖冷吃兔等本地小吃与特产的店铺。这里可以放置您的信息。',
-      ja: '冷吃兎などの地元の軽食・名物を扱うお店。ここにあなたの情報を掲載できます。',
-      ko: '렁츠투(冷吃兔) 등 지역 간식과 특산품을 파는 가게. 이 자리에 정보를 실을 수 있습니다.',
-    },
-  },
-  {
-    id: 'example-tea-house',
-    category: 'tea',
-    emoji: '🍵',
-    placeholder: true,
-    area: AREA.ziliujing,
-    name: { en: 'Example Tea House', zh: '示例茶馆', ja: '見本・茶館', ko: '예시 찻집' },
-    blurb: {
-      en: 'A traditional Sichuan tea house to slow down in. Your listing could go here.',
-      zh: '一家可以慢下来歇脚的四川老茶馆。这里可以放置您的信息。',
-      ja: 'ゆっくり過ごせる四川の伝統的な茶館。ここにあなたの情報を掲載できます。',
-      ko: '느긋하게 쉬어 갈 수 있는 쓰촨 전통 찻집. 이 자리에 정보를 실을 수 있습니다.',
-    },
-  },
-  {
-    id: 'example-craft-shop',
-    category: 'crafts',
-    emoji: '🎁',
-    placeholder: true,
-    area: AREA.daan,
-    name: { en: 'Example Craft & Souvenir Shop', zh: '示例工艺伴手礼店', ja: '見本・工芸おみやげ店', ko: '예시 공예·기념품점' },
-    blurb: {
-      en: 'Local crafts, gifts, and souvenirs to take home. Your listing could go here.',
-      zh: '可带回家的本地工艺品、礼品与伴手礼。这里可以放置您的信息。',
-      ja: '持ち帰れる地元の工芸品・ギフト・おみやげ。ここにあなたの情報を掲載できます。',
-      ko: '집으로 가져갈 지역 공예품·선물·기념품. 이 자리에 정보를 실을 수 있습니다.',
-    },
-  },
-  {
-    id: 'example-stay',
-    category: 'stay',
-    emoji: '🏨',
-    placeholder: true,
-    area: AREA.yantan,
-    name: { en: 'Example Hotel or Guesthouse', zh: '示例酒店或民宿', ja: '見本・ホテル／ゲストハウス', ko: '예시 호텔·게스트하우스' },
-    blurb: {
-      en: 'A place to stay while you explore the city. Your listing could go here.',
-      zh: '探索这座城市时的落脚之处。这里可以放置您的信息。',
-      ja: '街を巡る間の滞在先。ここにあなたの情報を掲載できます。',
-      ko: '도시를 둘러보는 동안 머물 곳. 이 자리에 정보를 실을 수 있습니다.',
-    },
-  },
 ];
 
 export interface DirectoryCopy {
@@ -187,7 +96,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
       'A growing, independent directory of Zigong’s local businesses — lantern workshops, Salt-Gang restaurants, snack shops, tea houses, and more.',
     tagline: 'The workshops, kitchens, and makers behind the city — a directory in progress.',
     intro:
-      'A city is its people and the things they make. This is a growing directory of Zigong’s local businesses, grouped by what they do. The cards below are placeholders showing how listings will look — real entries are on the way.',
+      'A city is its people and the things they make. This is a growing directory of Zigong’s local businesses, grouped by what they do. It’s just getting started — more listings are on the way.',
     areaLabel: 'Area',
     placeholderBadge: 'Example listing',
     comingSoon: 'Listing coming soon',
@@ -205,7 +114,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
       '一份不断扩充的自贡本地商家独立名录——彩灯工坊、盐帮菜餐馆、小吃店、茶馆等等。',
     tagline: '城市背后的工坊、灶台与匠人——一份正在完善的名录。',
     intro:
-      '一座城市，是它的人和他们所创造的一切。这是一份不断扩充的自贡本地商家名录，按其经营类别分组。下方的卡片为占位示例，展示日后真实信息的呈现方式——真实条目即将上线。',
+      '一座城市，是它的人和他们所创造的一切。这是一份不断扩充的自贡本地商家名录，按其经营类别分组。名录才刚刚起步——更多商家即将上线。',
     areaLabel: '所在区',
     placeholderBadge: '示例条目',
     comingSoon: '信息即将上线',
@@ -222,7 +131,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
       '自貢の地元のお店を集めた、少しずつ育つ独立系ディレクトリ——ランタン工房、塩帮菜レストラン、軽食店、茶館など。',
     tagline: '街を支える工房・厨房・作り手——制作中のディレクトリ。',
     intro:
-      '街とは、そこに暮らす人々と、その人たちが生み出すものです。これは自貢の地元のお店を業種ごとにまとめた、少しずつ育つディレクトリです。下のカードは掲載イメージを示す仮のものです——実際の情報は近日公開。',
+      '街とは、そこに暮らす人々と、その人たちが生み出すものです。これは自貢の地元のお店を業種ごとにまとめた、少しずつ育つディレクトリです。まだ始まったばかり——掲載は順次増えていきます。',
     areaLabel: 'エリア',
     placeholderBadge: '掲載イメージ',
     comingSoon: '情報は近日公開',
@@ -239,7 +148,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
       '쯔궁의 지역 상점을 모은, 점점 자라나는 독립 디렉터리 — 등불 공방, 옌방차이 식당, 분식점, 찻집 등.',
     tagline: '도시를 떠받치는 공방·주방·장인 — 만들어 가는 디렉터리.',
     intro:
-      '도시는 곧 그곳의 사람들과 그들이 만들어 내는 것입니다. 이것은 쯔궁의 지역 상점을 업종별로 묶은, 점점 자라나는 디렉터리입니다. 아래 카드는 게재 형태를 보여 주는 임시 예시이며 — 실제 항목은 곧 공개됩니다.',
+      '도시는 곧 그곳의 사람들과 그들이 만들어 내는 것입니다. 이것은 쯔궁의 지역 상점을 업종별로 묶은, 점점 자라나는 디렉터리입니다. 이제 막 시작했으며 — 더 많은 항목이 곧 추가됩니다.',
     areaLabel: '지역',
     placeholderBadge: '예시 항목',
     comingSoon: '정보 곧 공개',
