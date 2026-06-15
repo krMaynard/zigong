@@ -6,6 +6,8 @@ export type ThemeKey = 'heritage' | 'culture' | 'industry' | 'everyday' | 'peopl
 export interface HomeContent {
   /** Short lead under the title (the hero). */
   lead: string;
+  /** Caption for the lead cityscape photo. */
+  leadCaption: string;
   /** The framing overview essay, as paragraphs. */
   overview: string[];
   /** Label above the theme index. */
@@ -16,6 +18,7 @@ export interface HomeContent {
 export const home: Record<Locale, HomeContent> = {
   zh: {
     lead: '盐、恐龙与彩灯之外，一座仍在劳作与生活的川南城市。',
+    leadCaption: '自贡城区一瞥——市街向远处的丘陵与厂区延展。',
     overview: [
       '自贡常被一句话概括——“盐都”“恐龙之乡”“灯城”。这些标签都对，却都太轻。一座城市从不只是它的名片，而是盐井下沉的深度、车间里的节奏、清晨面馆升起的热气，以及生活在这一切之中的人。',
       '这里真正耐人寻味的，是许多不同的时间尺度叠在同一片土地上：一亿多年前的恐龙骨床，近两千年的井盐开采，十九世纪凿成的千米深井，二十世纪的重工业，以及今天仍在运转的工厂、市场与街巷。它们并未先后退场，而是层层相叠，至今共存。',
@@ -32,6 +35,7 @@ export const home: Record<Locale, HomeContent> = {
   },
   en: {
     lead: 'Beyond salt, dinosaurs, and lanterns: a southern-Sichuan city still at work and at home.',
+    leadCaption: 'Zigong from above — the city reaching toward the hills and the distant works.',
     overview: [
       'Zigong is usually summed up in a phrase — “salt capital,” “home of dinosaurs,” “city of lanterns.” Each label is true, and each is too light. A city is never its slogans; it is the depth of a brine well, the rhythm of a workshop floor, the steam rising from a noodle shop at dawn, and the people who live among all of it.',
       'What makes the place compelling is how many timescales rest on the same ground: a dinosaur bonebed from over a hundred million years ago, nearly two thousand years of well-salt, a kilometre-deep borehole drilled in the 1830s, a century of heavy industry, and the factories, markets, and streets still working today. None of these simply gave way to the next; they lie in layers, still coexisting.',
@@ -48,6 +52,7 @@ export const home: Record<Locale, HomeContent> = {
   },
   ja: {
     lead: '塩・恐竜・ランタンの先にある、今も働き、暮らす四川南部の都市。',
+    leadCaption: '高所から望む自貢——市街が遠くの丘陵と工場地帯へと続く。',
     overview: [
       '自貢はたいてい一言で語られる——「塩の都」「恐竜の郷」「ランタンの街」。どれも本当で、どれも軽すぎる。都市はスローガンではない。塩井戸の深さであり、工房の床に流れるリズムであり、明け方の麺屋から立ちのぼる湯気であり、そのすべての中で暮らす人々だ。',
       'この街を惹きつけるものは、同じ大地の上にいくつもの時間尺度が重なっていることだ。一億年以上前の恐竜化石層、二千年近い井戸塩、一八三〇年代に掘られた一キロメートルの井戸、一世紀にわたる重工業、そして今も動く工場・市場・街路。どれも次のものに席を譲って消えたのではなく、層をなして今も共存している。',
@@ -64,6 +69,7 @@ export const home: Record<Locale, HomeContent> = {
   },
   ko: {
     lead: '소금·공룡·등불 너머, 여전히 일하고 살아가는 쓰촨 남부의 도시.',
+    leadCaption: '높은 곳에서 본 쯔궁 — 시가지가 멀리 구릉과 공장 지대로 이어진다.',
     overview: [
       '쯔궁은 흔히 한마디로 요약된다 — “소금의 도시”, “공룡의 고향”, “등불의 도시”. 모두 사실이지만, 모두 너무 가볍다. 도시는 구호가 아니다. 그것은 소금 우물의 깊이이고, 작업장 바닥에 흐르는 리듬이며, 새벽 국숫집에서 피어오르는 김이고, 그 모든 것 속에서 살아가는 사람들이다.',
       '이 도시가 흥미로운 까닭은 같은 땅 위에 여러 시간 척도가 겹쳐 있다는 데 있다. 1억 년도 더 된 공룡 화석층, 거의 이천 년에 이르는 우물 소금, 1830년대에 뚫은 1킬로미터 깊이의 우물, 한 세기의 중공업, 그리고 지금도 돌아가는 공장과 시장과 거리. 어느 것도 다음 것에 자리를 내주고 사라지지 않았다. 층층이 쌓인 채 지금도 공존한다.',

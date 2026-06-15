@@ -23,6 +23,11 @@ const slugByKey: Record<ThemeKey, string> = {
 
   <section class="section">
     <div class="container">
+      <figure class="lead-figure">
+        <img src="/images/overview/cityscape-pano.jpg" alt={content.leadCaption} loading="eager" />
+        <figcaption>{content.leadCaption}</figcaption>
+      </figure>
+
       <div class="prose overview">
         {content.overview.map((p) => <p>{p}</p>)}
       </div>

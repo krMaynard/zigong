@@ -29,7 +29,7 @@ export default defineConfig({
     '/zh/about/': '/about/',
     '/zh/businesses/': '/businesses/',
     '/zh/visit/': '/',
-    '/visit/': '/',
+    '/visit/': '/en/',
     '/ja/visit/': '/ja/',
     '/ko/visit/': '/ko/',
   },
