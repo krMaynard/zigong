@@ -12,8 +12,8 @@ Always credit as the author's own ("作者摄 / Author's photo") in captions.
 | `overview/cityscape-downtown.jpg` | Downtown commercial blocks, hills, TV tower | Overview | reserved |
 | `overview/cityscape-tower.jpg` | Telecom tower + street with buses | Overview / Everyday | reserved |
 | `overview/cityscape-customs.jpg` | "中国海关" (Customs) building, hills | Overview / Industry | reserved |
-| `everyday/old-cinema-street.jpg` | Shuttered old building (former cinema) on a street, passers-by | Everyday life | reserved |
-| `everyday/hi-tech-square-spring-festival.jpg` | Public square at the 自贡高新 hi-tech district; Spring-Festival "文化惠民" stage + crowd | Everyday life / the city today | reserved |
+| `everyday/old-cinema-street.jpg` | Shuttered old building (former cinema) on a street, passers-by | Everyday life | **Used** — Everyday life essay |
+| `everyday/hi-tech-square-spring-festival.jpg` | Public square at the 自贡高新 hi-tech district; Spring-Festival "文化惠民" stage + crowd | Everyday life / the city today | **Used** — Everyday life essay |
 | `culture/river-lights-night.jpg` | Night riverside with illuminated light-art reflecting in the water | Culture (lanterns/light) | reserved |
 | `heritage/salt-museum-facade.jpg` | Salt Industry History Museum (Xiqin Guildhall), low-angle façade + lions | Heritage / Salt | **Used** — Salt essay |
 | `heritage/salt-museum-gate.jpg` | Xiqin Guildhall gate, portrait | Heritage / Salt | **Used** — Heritage landing |
