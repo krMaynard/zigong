@@ -10,7 +10,7 @@ import type { Locale } from '../i18n/ui';
 
 type Loc = Record<Locale, string>;
 
-export type BizCategory = 'lanterns' | 'food' | 'snacks' | 'tea' | 'crafts' | 'stay';
+export type BizCategory = 'lanterns' | 'food' | 'snacks' | 'tea' | 'sports' | 'crafts' | 'stay';
 
 export interface Business {
   id: string;
@@ -19,20 +19,28 @@ export interface Business {
   name: Loc;
   area: Loc;
   blurb: Loc;
+  /** Cover image first; any extras render as thumbnails. Paths under /public. */
+  images?: string[];
+  /** Public contact number, shown as a tel: link. */
+  phone?: string;
   /** Optional outbound link (official site / map). Omit for placeholders. */
   url?: string;
+  /** Show a Baidu Maps block (interactive map when an `ak` is configured,
+   *  otherwise just a "View on Baidu Maps" link). Located by name + area. */
+  baiduMap?: boolean;
   /** Marks an example/scaffold card rather than a verified listing. */
   placeholder?: boolean;
 }
 
 /** Display order + labels for the category groupings. */
-export const categoryOrder: BizCategory[] = ['lanterns', 'food', 'snacks', 'tea', 'crafts', 'stay'];
+export const categoryOrder: BizCategory[] = ['lanterns', 'food', 'snacks', 'tea', 'sports', 'crafts', 'stay'];
 
 export const categoryLabels: Record<BizCategory, Loc> = {
   lanterns: { en: 'Lantern workshops & makers', zh: '彩灯工坊与制作', ja: 'ランタン工房・メーカー', ko: '등불 공방·제작' },
   food: { en: 'Salt-Gang restaurants', zh: '盐帮菜餐馆', ja: '塩帮菜レストラン', ko: '옌방차이 식당' },
   snacks: { en: 'Snacks & local specialties', zh: '小吃与特产', ja: '軽食・名物', ko: '간식·특산품' },
   tea: { en: 'Tea houses', zh: '茶馆', ja: '茶館', ko: '찻집' },
+  sports: { en: 'Sports & recreation', zh: '运动与休闲', ja: 'スポーツ・レジャー', ko: '스포츠·레저' },
   crafts: { en: 'Crafts & souvenirs', zh: '工艺与伴手礼', ja: '工芸・おみやげ', ko: '공예·기념품' },
   stay: { en: 'Places to stay', zh: '住宿', ja: '宿泊', ko: '숙소' },
 };
@@ -44,8 +52,33 @@ const AREA = {
   yantan: { en: 'Yantan District', zh: '沿滩区', ja: '沿灘区', ko: '옌탄구' },
 } satisfies Record<string, Loc>;
 
-// One example card per category. All placeholders — replace with real listings.
+// Real, verified listings first, then example placeholders to fill in.
 export const businesses: Business[] = [
+  {
+    id: 'xingkong-baseball',
+    category: 'sports',
+    emoji: '⚾',
+    phone: '185 0813 4888',
+    baiduMap: true,
+    images: [
+      '/images/businesses/xingkong-baseball-storefront.jpg',
+      '/images/businesses/xingkong-baseball-nets.jpg',
+      '/images/businesses/xingkong-baseball-cages.jpg',
+    ],
+    area: { en: 'Zigong', zh: '自贡', ja: '自貢', ko: '쯔궁' },
+    name: {
+      en: 'Xingkong Baseball Sports Hall',
+      zh: '星空棒球运动馆',
+      ja: '星空ベースボール運動館',
+      ko: '싱쿵 야구 스포츠관',
+    },
+    blurb: {
+      en: 'An indoor baseball center with batting nets, cages, and tees — an active, family-friendly outing, and home base for the local "Shenlong" team.',
+      zh: '一家室内棒球运动馆，配有击球网、打击笼与打击架——是适合全家的活力去处，也是本地“燊龙队”的主场。',
+      ja: '打撃ネット・ケージ・ティーを備えた屋内野球施設。家族で楽しめるアクティブなお出かけ先で、地元「燊龍」チームの本拠地でもあります。',
+      ko: '타격 네트와 케이지, 티를 갖춘 실내 야구 센터 — 온 가족이 활기차게 즐길 나들이 장소이자 지역 “선룽” 팀의 홈입니다.',
+    },
+  },
   {
     id: 'example-lantern-workshop',
     category: 'lanterns',
@@ -144,6 +177,7 @@ export interface DirectoryCopy {
   disclaimer: string;
   listTitle: string;
   listBody: string;
+  baiduLink: string;
 }
 
 export const directory: Record<Locale, DirectoryCopy> = {
@@ -163,6 +197,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
     listTitle: 'Run a business in Zigong?',
     listBody:
       'This directory is being built. A way to suggest a business — free and non-sponsored — is coming soon.',
+    baiduLink: 'View on Baidu Maps',
   },
   zh: {
     title: '本地商家',
@@ -179,6 +214,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
       '此处的条目为独立的编辑甄选，并非付费推广或广告；被收录并不意味着任何隶属、背书或合作关系。本站始终保持非官方、无关联的立场。',
     listTitle: '您在自贡经营生意？',
     listBody: '本名录仍在建设中。一个免费、非赞助的商家推荐入口即将开放。',
+    baiduLink: '在百度地图查看',
   },
   ja: {
     title: '地元のお店',
@@ -195,6 +231,7 @@ export const directory: Record<Locale, DirectoryCopy> = {
       'ここでの掲載は独立した編集上の選定であり、有料掲載や広告ではありません。掲載されていても、提携・推奨・協力関係を意味するものではありません。本サイトは非公式・無関係の立場を保ちます。',
     listTitle: '自貢でお店を営んでいますか？',
     listBody: 'このディレクトリは制作中です。無料・非スポンサーでお店を推薦できる窓口を近日公開します。',
+    baiduLink: 'Baidu マップで見る',
   },
   ko: {
     title: '지역 상점',
@@ -211,5 +248,6 @@ export const directory: Record<Locale, DirectoryCopy> = {
       '여기의 항목은 독립적인 편집 선정이며 유료 게재나 광고가 아닙니다. 게재되었다고 해서 제휴·보증·협력 관계를 뜻하지 않습니다. 이 사이트는 비공식·무관 입장을 유지합니다.',
     listTitle: '쯔궁에서 가게를 운영하시나요?',
     listBody: '이 디렉터리는 만들어 가는 중입니다. 무료이며 비후원으로 가게를 추천할 수 있는 창구를 곧 엽니다.',
+    baiduLink: '바이두 지도에서 보기',
   },
 };

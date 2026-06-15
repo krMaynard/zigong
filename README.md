@@ -63,6 +63,25 @@ Pushing to `main` triggers `.github/workflows/deploy.yml` (the official
 and point the `zigong.fyi` DNS at GitHub Pages. The `public/CNAME` file is already
 in place.
 
+## Baidu Maps (optional)
+
+Business listings with `baiduMap: true` (in `src/data/businesses.ts`) show a
+"View on Baidu Maps" link by default. To upgrade that to an **interactive embedded
+map**, provide a Baidu Maps JS API key at build time:
+
+```bash
+# .env (or a CI/Pages build secret), exposed to the client by the PUBLIC_ prefix
+PUBLIC_BAIDU_MAPS_AK=your_baidu_ak
+```
+
+Get a key at <https://lbsyun.baidu.com/> (restrict it to the `zigong.fyi` domain).
+The map locates each business by its Chinese name + area via Baidu `LocalSearch`,
+so no manual coordinates are needed. Without the key, only the link renders — the
+build never breaks. For the GitHub Pages deploy, add the key as a repository
+**variable/secret** and pass it as `PUBLIC_BAIDU_MAPS_AK` in `deploy.yml`'s build
+step. If you later add a Content-Security-Policy, allow Baidu's script/image hosts
+(`api.map.baidu.com`, `*.bdimg.com`, `*.bdstatic.com`).
+
 ## Adding or changing content
 
 Content lives in **four parallel files** per page. See [`CLAUDE.md`](./CLAUDE.md) —

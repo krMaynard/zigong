@@ -1,0 +1,108 @@
+---
+// Baidu Maps block for a business.
+//
+// - Requires a Baidu Maps JS API key in the build env: PUBLIC_BAIDU_MAPS_AK.
+//   Get one at https://lbsyun.baidu.com/ (key restricted to your domain).
+// - With a key: renders an interactive map that locates the business by name
+//   within its city (LocalSearch) and drops a marker — no manual coordinates.
+// - Without a key: renders only a "View on Baidu Maps" link, so nothing breaks.
+//
+// Loads Baidu's external script only on pages that actually render this block.
+interface Props {
+  /** Search query, e.g. "星空棒球运动馆 自贡". */
+  query: string;
+  /** Business display name (current locale) for the marker / aria-label. */
+  title: string;
+  /** Localized "View on Baidu Maps" label. */
+  linkLabel: string;
+}
+const { query, title, linkLabel } = Astro.props;
+const ak = import.meta.env.PUBLIC_BAIDU_MAPS_AK;
+const searchUrl = `https://map.baidu.com/search/${encodeURIComponent(query)}`;
+const mapId = 'bmap-' + Math.random().toString(36).slice(2, 10);
+---
+
+<div class="baidu-block">
+  {ak && <div class="baidu-map" id={mapId} role="img" aria-label={title}></div>}
+  <a class="baidu-link" href={searchUrl} target="_blank" rel="noopener">
+    <span aria-hidden="true">📍</span> {linkLabel}
+  </a>
+</div>
+
+{ak && (
+  <script is:inline define:vars={{ ak, mapId, query, title }}>
+    (function () {
+      function init() {
+        var el = document.getElementById(mapId);
+        if (!el || !window.BMapGL) return;
+        var map = new BMapGL.Map(el);
+        // Initial view: Zigong city centre (recentred on the found place).
+        map.centerAndZoom(new BMapGL.Point(104.7734, 29.3528), 12);
+        map.enableScrollWheelZoom(false);
+        var local = new BMapGL.LocalSearch(map, {
+          onSearchComplete: function (results) {
+            if (
+              local.getStatus() !== BMAP_STATUS_SUCCESS ||
+              !results ||
+              !results.getCurrentNumPois()
+            ) {
+              return;
+            }
+            var poi = results.getPoi(0);
+            map.centerAndZoom(poi.point, 17);
+            var marker = new BMapGL.Marker(poi.point);
+            map.addOverlay(marker);
+            var info = new BMapGL.InfoWindow(title);
+            marker.addEventListener('click', function () {
+              map.openInfoWindow(info, poi.point);
+            });
+            map.openInfoWindow(info, poi.point);
+          },
+        });
+        local.search(query);
+      }
+      function load() {
+        if (window.BMapGL) return init();
+        if (window.__baiduMapLoading) {
+          (window.__baiduMapQueue = window.__baiduMapQueue || []).push(init);
+          return;
+        }
+        window.__baiduMapLoading = true;
+        window.__onBaiduMapLoaded = function () {
+          init();
+          (window.__baiduMapQueue || []).forEach(function (cb) { cb(); });
+        };
+        var s = document.createElement('script');
+        s.src =
+          'https://api.map.baidu.com/api?type=webgl&v=1.0&ak=' +
+          encodeURIComponent(ak) +
+          '&callback=__onBaiduMapLoaded';
+        s.async = true;
+        s.onerror = function () { window.__baiduMapLoading = false; };
+        document.head.appendChild(s);
+      }
+      load();
+    })();
+  </script>
+)}
+
+<style>
+  .baidu-block { margin-top: 0.6rem; }
+  .baidu-map {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-subtle);
+    margin-bottom: 0.5rem;
+  }
+  .baidu-link {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--accent-deep);
+    text-decoration: none;
+  }
+  .baidu-link:hover { text-decoration: underline; }
+</style>
