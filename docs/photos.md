@@ -36,13 +36,13 @@ Staged for the **Culture** section (and one for Overview/Everyday). All reserved
 | File | Shows | Theme | Status |
 |------|-------|-------|--------|
 | `overview/cityscape-night.jpg` | High-rise apartment towers lit up at night | Overview / Everyday | reserved |
-| `culture/lantern-bridge.jpg` | The lantern bridge hung with lanterns, pagoda + gateway behind (strong hero) | Culture (lanterns) | reserved |
+| `culture/lantern-bridge.jpg` | The lantern bridge hung with lanterns, pagoda + gateway behind (strong hero) | Culture (lanterns) | **Used** — Lanterns essay |
 | `culture/lantern-bridge-arch.jpg` | Lantern bridge + pagoda, vertical, reflections | Culture (lanterns) | reserved |
 | `culture/lantern-bridge-gate.jpg` | Lantern bridge with a glowing gateway | Culture (lanterns) | reserved |
 | `culture/lantern-bridge-dusk.jpg` | Bridge roofline + pagoda against deep-blue dusk | Culture (lanterns) | reserved |
 | `culture/lantern-reflection.jpg` | Lantern sets mirrored in the water under the bridge arch | Culture (lanterns) | reserved |
 | `culture/lantern-reflection-arch.jpg` | Moon-arch + floating lanterns reflected in water | Culture (lanterns) | reserved |
-| `culture/lantern-porcelain-dishes.jpg` | Blue-and-white porcelain teapot/bowl lanterns (signature bound-porcelain craft) | Culture (lanterns) | reserved |
+| `culture/lantern-porcelain-dishes.jpg` | Blue-and-white porcelain teapot/bowl lanterns (signature bound-porcelain craft) | Culture (lanterns) | **Used** — Lanterns essay |
 | `culture/lantern-porcelain-vase.jpg` | Giant porcelain-vase lantern with crowds (scale) | Culture (lanterns) | reserved |
 | `culture/lantern-saltworker.jpg` | Lantern figure of a salt worker (ties Culture↔Salt) | Culture (lanterns) | reserved |
 | `culture/lantern-salt-placard.jpg` | Placard for the "千年盐韵" salt-themed lantern set, 23rd festival | Culture (lanterns) | reserved |
