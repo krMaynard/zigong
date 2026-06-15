@@ -16,8 +16,11 @@ const pages = defineCollection({
     tagline: z.string().optional(),
     /** Ordering for any listing (lower = earlier). */
     order: z.number().default(99),
-    /** Optional source/credit lines shown at the foot of the page. */
-    sources: z.array(z.string()).default([]),
+    /** Source/credit lines shown at the foot of the page. Each is either plain
+     *  text or a { text, url } pair rendered as a link. */
+    sources: z
+      .array(z.union([z.string(), z.object({ text: z.string(), url: z.string().url() })]))
+      .default([]),
   }),
 });
 
