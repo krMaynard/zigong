@@ -250,6 +250,23 @@ figcaption {
 .lead-figure { margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
 .lead-figure img { border-radius: var(--radius-lg); }
 
+/* Captioned photo gallery (used inside MDX). */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  margin-block: 1.9rem;
+}
+.gallery figure { margin: 0; }
+.gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+.gallery figcaption { margin-top: 0.4rem; font-size: 0.8rem; }
+
 /* ---- Photo strip ------------------------------------------------------- */
 .photo-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.75rem; }
 .photo-frame {
