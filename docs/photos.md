@@ -28,10 +28,10 @@ Always credit as the author's own ("作者摄 / Author's photo") in captions.
 | `heritage/dino-museum-preface.jpg` | The museum's "前言 / Preface" plaque (zh/en/ja) | Heritage / Dinosaurs | **Used** |
 | `heritage/wang-estate-panorama.jpg` | Wang Family Estate (王家大院) courtyards ringed by high-rises (Yantan) | Heritage / Salt (merchants) | **Used** — Salt essay |
 | `heritage/wang-estate-gate.jpg` | The estate's gatehouse with the "结庐人境" lintel plaque | Heritage / Salt (merchants) | **Used** — Salt essay |
-| `heritage/wang-estate-rendering.jpg` | Bird's-eye reconstruction of the estate (on-site display) | Heritage / Salt (merchants) | **Used** — Salt essay |
-| `heritage/wang-estate-aerial-old.jpg` | Older aerial photo of the estate's roofs (on-site display) | Heritage / Salt (merchants) | **Used** — Salt essay |
-| `heritage/wang-estate-builder.jpg` | Display panel on builder Wang Hefu (王和甫) | Heritage / Salt (merchants) | **Used** — Salt essay |
-| `heritage/wang-estate-architecture.jpg` | Display panel on the old house / carvings (结庐人境) | Heritage / Salt (merchants) | **Used** — Salt essay |
+| `heritage/wang-estate-rendering.jpg` | Bird’s-eye reconstruction of the estate (盐商大戏楼 / Salt-Merchant Opera-Stage, next door; 2026) | Heritage / Salt (merchants) | **Used** — Salt essay |
+| `heritage/wang-estate-aerial-old.jpg` | Older aerial photo of the estate’s roofs in disrepair (盐商大戏楼, next door; 2026) | Heritage / Salt (merchants) | **Used** — Salt essay |
+| `heritage/wang-estate-builder.jpg` | Display panel on builder Wang Hefu (王和甫) (盐商大戏楼, next door; 2026) | Heritage / Salt (merchants) | **Used** — Salt essay |
+| `heritage/wang-estate-architecture.jpg` | Display panel on the old house / carvings 结庐人境 (盐商大戏楼, next door; 2026) | Heritage / Salt (merchants) | **Used** — Salt essay |
 | `industry/reservoir-construction.jpg` | Reservoir/dam under construction in a quarried hillside; slogan "兴修水利 利国利民" | Industry | **Used** — Industry essay |
 | `industry/cement-plant-silos.jpg` | Cement/concrete batching plant silos, low angle | Industry | **Used** — Industry essay |
 
