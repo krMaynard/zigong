@@ -37,7 +37,7 @@ export const categoryOrder: BizCategory[] = ['lanterns', 'food', 'snacks', 'tea'
 
 export const categoryLabels: Record<BizCategory, Loc> = {
   lanterns: { en: 'Lantern workshops & makers', zh: '彩灯工坊与制作', ja: 'ランタン工房・メーカー', ko: '등불 공방·제작' },
-  food: { en: 'Salt-Gang restaurants', zh: '盐帮菜餐馆', ja: '塩帮菜レストラン', ko: '옌방차이 식당' },
+  food: { en: 'Restaurants & hotpot', zh: '餐馆与火锅', ja: 'レストラン・火鍋', ko: '식당·훠궈' },
   snacks: { en: 'Snacks & local specialties', zh: '小吃与特产', ja: '軽食・名物', ko: '간식·특산품' },
   tea: { en: 'Tea houses', zh: '茶馆', ja: '茶館', ko: '찻집' },
   sports: { en: 'Sports & recreation', zh: '运动与休闲', ja: 'スポーツ・レジャー', ko: '스포츠·레저' },
@@ -94,6 +94,54 @@ export const businesses: Business[] = [
       zh: '华商·国际城“华彩市集”里的一处小吃摊：现包的川式春卷（约 10 元一盒），还有烤肠、肉肠——逛商场时一份便宜实惠的随手小吃。',
       ja: '華商・国際城の「華彩市集」にある軽食の屋台。手づくりの四川風春巻き（一箱およそ10元）に、焼きソーセージや肉ソーセージ——モール散策のついでに楽しめる安い一口です。',
       ko: '화상·궈지청 ‘화차이 시장(华彩市集)’ 안의 간식 노점: 직접 만든 쓰촨식 춘권(한 박스 약 10위안)과 구운 소시지·고기 소시지 — 쇼핑하다 들르기 좋은 싸고 간단한 한 입.',
+    },
+  },
+  {
+    id: 'guoguojiu-camping-hotpot',
+    category: 'food',
+    emoji: '🍲',
+    baiduMap: true,
+    area: {
+      en: 'Nanhu, Ziliujing District (南湖)',
+      zh: '自流井区南湖',
+      ja: '自流井区・南湖（なんこ）',
+      ko: '쯔류징구 난후(南湖)',
+    },
+    name: {
+      en: 'Guoguojiu Camping Hotpot (锅锅九露营火锅)',
+      zh: '锅锅九露营火锅',
+      ja: '鍋鍋九キャンプ火鍋（锅锅九露营火锅）',
+      ko: '궈궈지우 캠핑 훠궈(锅锅九露营火锅)',
+    },
+    blurb: {
+      en: 'A camping-themed hotpot restaurant — tents, greenery, and an outdoorsy mood brought indoors — known for its probiotic twin-broth pot, with sides like crispy pork, shrimp-and-roe paste, and matsutake wontons. A Sichuan hotpot night with a “glamping” twist.',
+      zh: '一家“露营风”的火锅店，把帐篷、绿植与户外氛围搬进店里，主打乳酸菌鸳鸯锅底，配龙须酥肉、鱼籽虾滑、松茸抄手等——在城里吃一顿“野”味十足的川式火锅。',
+      ja: 'キャンプ風の火鍋店。テントや観葉植物でアウトドアの雰囲気を店内に持ち込み、乳酸菌の鴛鴦（二色）鍋を看板に、酥肉（揚げ豚）や海老のすり身、松茸ワンタンなどを合わせる——街なかで楽しむ「グランピング」流の四川火鍋。',
+      ko: '캠핑 콘셉트의 훠궈집 — 텐트와 화초로 야외 분위기를 실내에 들였다. 유산균 원앙(이색) 육수를 간판으로, 바삭한 돼지고기 튀김·날치알 새우완자·송이 만두 등을 곁들인다. 도심에서 즐기는 ‘글램핑’ 풍 쓰촨 훠궈.',
+    },
+  },
+  {
+    id: 'chuannan-tennis-center',
+    category: 'sports',
+    emoji: '🎾',
+    baiduMap: true,
+    area: {
+      en: 'Nanhu Sports & Culture Center (南湖体育文化中心)',
+      zh: '南湖体育文化中心',
+      ja: '南湖体育文化センター（南湖体育文化中心）',
+      ko: '난후 체육문화센터(南湖体育文化中心)',
+    },
+    name: {
+      en: 'Chuannan International Tennis Center (川南国际网球中心)',
+      zh: '川南国际网球中心',
+      ja: '川南国際テニスセンター（川南国际网球中心）',
+      ko: '촨난 국제 테니스 센터(川南国际网球中心)',
+    },
+    blurb: {
+      en: 'Part of Zigong’s Nanhu Sports & Culture Center, built to host the Sichuan Provincial Games. As the city has become a regular host of national- and international-level events, this is one of the places to watch — or play — tennis.',
+      zh: '川南国际网球中心是自贡南湖体育文化中心的一部分，为承办四川省运会而建。近年自贡频频承办全国乃至国际级赛事，这里正是看球、打球的去处之一。',
+      ja: '自貢の南湖体育文化センターの一部で、四川省運動会の開催のために建てられた。近年、自貢は全国・国際級の大会を相次いで誘致しており、ここはその観戦・プレーの拠点の一つだ。',
+      ko: '쯔궁 난후 체육문화센터의 일부로, 쓰촨성 체전을 치르기 위해 지어졌다. 최근 쯔궁이 전국·국제급 대회를 잇따라 유치하면서, 이곳은 테니스를 관람하거나 직접 즐기기 좋은 장소 중 하나가 되었다.',
     },
   },
 ];
