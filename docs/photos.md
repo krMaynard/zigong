@@ -18,6 +18,7 @@ photo is added — all photos, no exceptions (see CLAUDE.md → "Photos").
 | `everyday/old-cinema-street.jpg` | Shuttered old building (former cinema) on a street, passers-by | Everyday life | **Used** — Everyday life essay |
 | `everyday/hi-tech-square-spring-festival.jpg` | Public square at the 自贡高新 hi-tech district; Spring-Festival "文化惠民" stage + crowd | Everyday life / the city today | **Used** — Everyday life essay |
 | `everyday/cartoony-ball-pit.jpg` | 卡通尼 (Cartoony) indoor children's playground in 华商·国际城 — ball pit, slide, glowing tunnel (faces blurred) | Everyday life / kids | **Used** — Everyday life essay |
+| `everyday/yanruyu-library.jpg` | 沿如遇书舍艺文中心 (Yanruyu Cultural-Arts Center / Yantan District library) building + plaza; a child on a scooter in the foreground with their whole body blurred | Everyday life / kids · culture | **Used** — Everyday life essay |
 | `culture/river-lights-night.jpg` | Night riverside with illuminated light-art reflecting in the water | Culture (lanterns/light) | **Used** |
 | `heritage/salt-museum-facade.jpg` | Salt Industry History Museum (Xiqin Guildhall), low-angle façade + lions | Heritage / Salt | **Used** — Salt essay |
 | `heritage/salt-museum-gate.jpg` | Xiqin Guildhall gate, portrait | Heritage / Salt | **Used** — Heritage landing |
