@@ -4,6 +4,9 @@ Original photography by the author (kieranmaynard). Stored optimized under
 `public/images/<theme>/`, referenced by absolute path (e.g. `/images/heritage/…`).
 Always credit as the author's own ("作者摄 / Author's photo") in captions.
 
+**Privacy:** every recognisable human face must be blurred/pixelated before a
+photo is added — all photos, no exceptions (see CLAUDE.md → "Photos").
+
 | File | Shows | Theme | Status |
 |------|-------|-------|--------|
 | `overview/cityscape-pano.jpg` | Wide panorama of the city + a major intersection, hills behind | Overview | **Used** — home lead image |
@@ -14,6 +17,7 @@ Always credit as the author's own ("作者摄 / Author's photo") in captions.
 | `overview/cityscape-customs.jpg` | "中国海关" (Customs) building, hills | Overview / Industry | **Used** |
 | `everyday/old-cinema-street.jpg` | Shuttered old building (former cinema) on a street, passers-by | Everyday life | **Used** — Everyday life essay |
 | `everyday/hi-tech-square-spring-festival.jpg` | Public square at the 自贡高新 hi-tech district; Spring-Festival "文化惠民" stage + crowd | Everyday life / the city today | **Used** — Everyday life essay |
+| `everyday/cartoony-ball-pit.jpg` | 卡通尼 (Cartoony) indoor children's playground in 华商·国际城 — ball pit, slide, glowing tunnel (faces blurred) | Everyday life / kids | **Used** — Everyday life essay |
 | `culture/river-lights-night.jpg` | Night riverside with illuminated light-art reflecting in the water | Culture (lanterns/light) | **Used** |
 | `heritage/salt-museum-facade.jpg` | Salt Industry History Museum (Xiqin Guildhall), low-angle façade + lions | Heritage / Salt | **Used** — Salt essay |
 | `heritage/salt-museum-gate.jpg` | Xiqin Guildhall gate, portrait | Heritage / Salt | **Used** — Heritage landing |

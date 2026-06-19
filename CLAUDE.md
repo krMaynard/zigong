@@ -95,6 +95,21 @@ Everyday→`kids`) pending dedicated section pages + deeper rewrites. There is *
 - Before changing factual claims (festival dates, well depths, museum details),
   verify against a current source — don't assert from memory.
 
+## Photos — blur faces before posting
+
+Photography is the author's own. **Before adding any photo to the site, blur (or
+pixelate) every recognisable human face in it** — visitors, bystanders, children,
+anyone. This applies to **all photos, without exception**, for privacy. Faces can
+be located with the YuNet detector (`cv2.FaceDetectorYN`, model
+`face_detection_yunet…onnx`); YuNet may miss faces that are turned away or
+occluded, so also scan the photo by eye and cover those heads manually. Obscure
+each head with a heavy mosaic + blur and **verify by eye that no face remains
+recognisable** before committing. Optimise as usual (resize ~1300–2000px wide,
+mozjpeg q78) and store under `public/images/<theme>/`. Captions: credit as the
+author's own and name the **exact place and year** (e.g. `(Zigong; author's
+photo, 2026)`). Never commit scratch/processing files (`_*.cjs`, models, temp
+crops) — keep them out of the repo.
+
 ## Disclaimer
 
 Keep the unofficial/unaffiliated disclaimer intact in the footer
