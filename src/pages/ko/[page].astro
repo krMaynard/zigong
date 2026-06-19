@@ -1,12 +1,15 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
-import { pillarPaths, type PageEntry } from '../../lib/content';
+import SectionPage from '../../components/SectionPage.astro';
+import { sectionPaths, type SectionPathProps } from '../../lib/content';
 
 export async function getStaticPaths() {
-  return pillarPaths('ko');
+  return sectionPaths('ko');
 }
 
-const { entry } = Astro.props as { entry: PageEntry };
+const props = Astro.props as SectionPathProps;
 ---
 
-<ContentPage entry={entry} />
+{props.kind === 'section'
+  ? <SectionPage sectionKey={props.sectionKey} entries={props.entries} />
+  : <ContentPage entry={props.entry} />}
