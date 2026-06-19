@@ -45,11 +45,16 @@ lead version.
 In the **en / ja / ko** pages (never zh — it is the authoritative source of the
 characters), the **first mention on each page** of any China-specific proper noun
 — places, people, institutions/companies, named dishes, cultural works/phrases —
-must carry a gloss:
+must carry a gloss. **Do not gloss widely-known terms** that English readers
+already use: **province names** (Sichuan, Shaanxi, Shanxi…), **dynasty names**
+(Song, Qing…), Spring Festival, and the like. (Exception: keep a gloss where it
+disambiguates — e.g. Korean 산시 is used for both 陕西 and 山西.) If unsure, ask.
 
 - **English & Korean:** append the **simplified** Chinese characters in parentheses
-  — `Xiqin Guildhall (西秦会馆)`, `시친 회관(西秦会馆)`. If an italic pinyin gloss is
-  already present, combine it: `Salt-Gang cuisine (盐帮菜, *yánbāng cài*)`.
+  — `Xiqin Guildhall (西秦会馆)`, `시친 회관(西秦会馆)`. **Hanzi only — never add a
+  pinyin reading next to it** (`Salt-Gang cuisine (盐帮菜)`, not `(盐帮菜, *yánbāng
+  cài*)`). A romanised word used as the term itself still takes a hanzi gloss:
+  `rushang (儒商)`, `the tianche 天车`.
 - **Japanese:** the names are already in kanji, so instead add the **onyomi reading**
   in full-width parentheses where the kanji are likely hard to read —
   `燊海井（しんかいせい）`, `王和甫（おう・わほ）` (use ・ between surname and given
