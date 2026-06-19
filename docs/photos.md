@@ -15,7 +15,7 @@ photo is added — all photos, no exceptions (see CLAUDE.md → "Photos").
 | `overview/cityscape-downtown.jpg` | Downtown commercial blocks, hills, TV tower | Overview | **Used** |
 | `overview/cityscape-tower.jpg` | Telecom tower + street with buses | Overview / Everyday | **Used** |
 | `overview/cityscape-customs.jpg` | "中国海关" (Customs) building, hills | Overview / Industry | **Used** |
-| `everyday/old-cinema-street.jpg` | Shuttered old building (former cinema) on a street, passers-by | Everyday life | **Used** — Everyday life essay |
+| `everyday/old-cinema-street.jpg` | 人民电影院 (People's Cinema) on 解放路 (old 竹棚子 quarter) — shuttered, listed for demolition then kept; pedestrians along the foreground blurred (2018) | Everyday life | **Used** — Everyday life essay |
 | `everyday/hi-tech-square-spring-festival.jpg` | Public square at the 自贡高新 hi-tech district; Spring-Festival "文化惠民" stage + crowd | Everyday life / the city today | **Used** — Everyday life essay |
 | `everyday/cartoony-ball-pit.jpg` | 卡通尼 (Cartoony) indoor children's playground in 华商·国际城 — ball pit, slide, glowing tunnel (faces blurred) | Everyday life / kids | **Used** — Everyday life essay |
 | `everyday/yanruyu-library.jpg` | 沿如遇书舍艺文中心 (Yanruyu Cultural-Arts Center / Yantan District library) building + plaza; a child on a scooter in the foreground with their whole body blurred | Everyday life / kids · culture | **Used** — Everyday life essay |
@@ -24,7 +24,7 @@ photo is added — all photos, no exceptions (see CLAUDE.md → "Photos").
 | `heritage/salt-museum-gate.jpg` | Xiqin Guildhall gate, portrait | Heritage / Salt | **Used** — Heritage landing |
 | `heritage/salt-museum-lion.jpg` | Close-up of a carved stone guardian lion | Heritage / Salt | **Used** |
 | `heritage/salt-museum-lion-fence.jpg` | Stone lion on a fence post, street behind | Heritage / Salt | **Used** |
-| `heritage/old-timber-roof.jpg` | Decayed carved timber roof structure of an old building | Heritage / Salt (architecture) | **Used** — Salt essay |
+| `heritage/old-timber-roof.jpg` | Carved camel-hump bracket (驼峰) on a decaying beam of an ordinary (now-condemned) Zigong building, 2017 — echoes the Wang-estate carving | Heritage / Salt (merchants) | **Used** — Salt essay (Wang-estate section) |
 | `heritage/war-memorial-wall-1.jpg` | Marble memorial inscription — wartime bombing of Ziliujing; "居安思危 勿忘国耻" | Heritage / history | **Used** — Salt essay (facts attributed to the memorial) |
 | `heritage/war-memorial-wall-2.jpg` | Continuation of the memorial inscription (dated 1997.9) | Heritage / history | **Used** — Salt appendix |
 | `heritage/dino-museum-hall.jpg` | Sauropod skeleton in the museum's main hall, before a Jurassic mural | Heritage / Dinosaurs | **Used** — Dinosaurs essay |
