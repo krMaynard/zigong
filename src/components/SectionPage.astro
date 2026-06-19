@@ -32,6 +32,21 @@ const rendered = await Promise.all(
   }),
 );
 
+// Stitching several MDX files onto one page means their auto-generated heading
+// ids share a DOM. Astro's slugger only de-dupes within a single file, so an
+// identical heading across two members (e.g. "## Sources") would emit a
+// duplicate id and silently break both anchor jumps and the scroll-spy. Fail
+// the build loudly instead of shipping a broken page.
+const anchorIds = rendered.flatMap((b) => [b.slug, ...b.headings.map((h) => h.slug)]);
+const duplicateIds = [...new Set(anchorIds.filter((id, i) => anchorIds.indexOf(id) !== i))];
+if (duplicateIds.length > 0) {
+  throw new Error(
+    `SectionPage "${sectionKey}" (${locale}) has colliding anchor id(s): ` +
+      `${duplicateIds.join(', ')}. Rename the duplicated heading(s) so every ` +
+      `id on the stitched page is unique.`,
+  );
+}
+
 const intro = rendered[0];
 const heroEmoji = intro.entry.data.emoji;
 const heroTagline = intro.entry.data.tagline;
@@ -294,16 +309,13 @@ const tocLabel = t('toc.title');
 
     var visible = {};
     function refresh() {
+      // `targets` is in document order, so the most specific section currently
+      // in the spy band is simply the last visible one. (Picking the smallest
+      // bounding-rect top would let a wrapping <section> hog the active state
+      // and never surface its own sub-headings.)
       var current = null;
-      var top = Infinity;
       targets.forEach(function (el) {
-        if (visible[el.id]) {
-          var y = el.getBoundingClientRect().top;
-          if (y < top) {
-            top = y;
-            current = el.id;
-          }
-        }
+        if (visible[el.id]) current = el.id;
       });
       links.forEach(function (a) {
         a.classList.remove('is-active');
