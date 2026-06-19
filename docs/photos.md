@@ -65,5 +65,14 @@ The **Culture** section's festival gallery (and one night cityscape for Everyday
 | `culture/lantern-entrance-2017.jpg` | "2017 自贡灯会 / 23rd Zigong Int'l Dinosaur Lantern Festival" entrance sign | Culture (lanterns) | **Used** |
 | `culture/lantern-entrance-street.jpg` | Entrance sign from the street with traffic | Culture (lanterns) | **Used** |
 
+### Businesses (People & places directory)
+
+Stored under `public/images/businesses/`, referenced from `src/data/businesses.ts`.
+
+| File | Shows | Listing | Status |
+|------|-------|---------|--------|
+| `businesses/houshanpo-spring-rolls.jpg` | 后山坡春卷儿 snack stall in the 华彩市集 (Colorful Market) food hall, 华商·国际城 — spring rolls + grilled sausages (faces blurred) | snacks | **Used** |
+
 To re-optimize new originals, resize to ~1300–2000px wide at mozjpeg q78 (see the
-one-off `sharp` script used in the PR that added these).
+one-off `sharp` script used in the PR that added these). **Blur every recognisable
+face before adding a photo** (see CLAUDE.md → "Photos").
