@@ -1,0 +1,344 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from './Hero.astro';
+import { asLocale, useTranslations } from '../i18n/utils';
+import { splitId, type PageEntry, type SectionKey } from '../lib/content';
+import type { UI } from '../i18n/ui';
+
+interface Props {
+  sectionKey: SectionKey;
+  entries: PageEntry[];
+}
+const { sectionKey, entries } = Astro.props;
+
+const locale = asLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+
+// The section's identity is the theme/nav label, so nav, home cards, and the
+// page heading all agree.
+const navKey: Record<SectionKey, keyof UI> = {
+  heritage: 'nav.heritage',
+  culture: 'nav.culture',
+  industry: 'nav.industry',
+  everyday: 'nav.everyday',
+};
+const sectionTitle = t(navKey[sectionKey]);
+
+const rendered = await Promise.all(
+  entries.map(async (entry) => {
+    const { Content, headings } = await render(entry);
+    return { entry, Content, slug: splitId(entry.id).slug, headings };
+  }),
+);
+
+// Stitching several MDX files onto one page means their auto-generated heading
+// ids share a DOM. Astro's slugger only de-dupes within a single file, so an
+// identical heading across two members (e.g. "## Sources") would emit a
+// duplicate id and silently break both anchor jumps and the scroll-spy. Fail
+// the build loudly instead of shipping a broken page.
+const anchorIds = rendered.flatMap((b) => [b.slug, ...b.headings.map((h) => h.slug)]);
+const duplicateIds = [...new Set(anchorIds.filter((id, i) => anchorIds.indexOf(id) !== i))];
+if (duplicateIds.length > 0) {
+  throw new Error(
+    `SectionPage "${sectionKey}" (${locale}) has colliding anchor id(s): ` +
+      `${duplicateIds.join(', ')}. Rename the duplicated heading(s) so every ` +
+      `id on the stitched page is unique.`,
+  );
+}
+
+const intro = rendered[0];
+const heroEmoji = intro.entry.data.emoji;
+const heroTagline = intro.entry.data.tagline;
+const heroDesc = intro.entry.data.description;
+
+// Table of contents. The intro flows under the hero, so it contributes its own
+// sub-headings at the top level; each later essay becomes a top-level entry
+// (anchored to its slug) with its sub-headings nested beneath.
+type TocLeaf = { text: string; href: string };
+type TocNode = TocLeaf & { children: TocLeaf[] };
+const toc: TocNode[] = [];
+rendered.forEach((block, i) => {
+  const subs: TocLeaf[] = block.headings
+    .filter((h) => h.depth === 2)
+    .map((h) => ({ text: h.text, href: `#${h.slug}` }));
+  if (i === 0) {
+    for (const s of subs) toc.push({ ...s, children: [] });
+  } else {
+    toc.push({ text: block.entry.data.title, href: `#${block.slug}`, children: subs });
+  }
+});
+
+// One combined, de-duplicated source list at the foot of the section.
+const seen = new Set<string>();
+const sources: { text: string; url?: string }[] = [];
+for (const block of rendered) {
+  for (const s of block.entry.data.sources ?? []) {
+    const item = typeof s === 'string' ? { text: s } : s;
+    if (seen.has(item.text)) continue;
+    seen.add(item.text);
+    sources.push(item);
+  }
+}
+
+const tocLabel = t('toc.title');
+---
+
+<BaseLayout title={sectionTitle} description={heroDesc}>
+  <Hero eyebrow={heroEmoji} title={sectionTitle} tagline={heroTagline} />
+
+  <div class="section">
+    <div class="container section-layout">
+      {toc.length > 0 && (
+        <aside class="toc" data-section-toc aria-label={tocLabel}>
+          <button class="toc-toggle" type="button" aria-expanded="false" aria-controls="section-toc-nav">
+            <span>{tocLabel}</span>
+            <span class="toc-chevron" aria-hidden="true"></span>
+          </button>
+          <nav class="toc-nav" id="section-toc-nav" aria-label={tocLabel}>
+            <p class="toc-heading">{tocLabel}</p>
+            <ol>
+              {toc.map((node) => (
+                <li>
+                  <a class="toc-link" href={node.href}>{node.text}</a>
+                  {node.children.length > 0 && (
+                    <ol class="toc-sub">
+                      {node.children.map((child) => (
+                        <li><a class="toc-link" href={child.href}>{child.text}</a></li>
+                      ))}
+                    </ol>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
+      )}
+
+      <article class="section-body">
+        {rendered.map((block, i) => (
+          <section class="section-article" id={block.slug}>
+            {i !== 0 && <h2 class="section-article-title">{block.entry.data.title}</h2>}
+            <div class="prose"><block.Content /></div>
+          </section>
+        ))}
+
+        {sources.length > 0 && (
+          <aside class="sources" aria-label={t('footer.sources')}>
+            <h2 class="sources-title">{t('footer.sources')}</h2>
+            <ul>
+              {sources.map((s) => (
+                <li>
+                  {s.url ? (
+                    <a href={s.url} target="_blank" rel="noopener noreferrer">{s.text}</a>
+                  ) : (
+                    s.text
+                  )}
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
+      </article>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .section-layout {
+    display: grid;
+    gap: clamp(1.25rem, 4vw, 2.75rem);
+  }
+  .section-body { min-width: 0; }
+
+  /* Anchored sub-sections clear the sticky header when jumped to. */
+  .section-article { scroll-margin-top: 5rem; }
+  .section-article + .section-article { margin-top: clamp(2.5rem, 6vw, 4rem); }
+  .section-article-title {
+    margin-bottom: 1.4rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-body :global(.prose :is(h2, h3)) { scroll-margin-top: 5rem; }
+
+  /* ---- Table of contents ---- */
+  .toc {
+    position: sticky;
+    top: calc(3.75rem + 0.5rem);
+    z-index: 40;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .toc-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+  }
+  .toc-chevron {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.18s ease;
+  }
+  .toc-toggle[aria-expanded='true'] .toc-chevron { transform: rotate(-135deg); }
+
+  .toc-nav { display: none; padding: 0 1rem 0.9rem; }
+  .toc-nav.open { display: block; }
+  .toc-heading {
+    display: none;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 0.7rem;
+  }
+  .toc-nav ol { list-style: none; padding: 0; margin: 0; }
+  .toc-nav li { margin: 0; }
+  .toc-sub { margin: 0.2rem 0 0.4rem 0.85rem; padding-left: 0.6rem; border-left: 1px solid var(--border); }
+  .toc-link {
+    display: block;
+    padding: 0.28rem 0;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    line-height: 1.35;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    padding-left: 0.7rem;
+    margin-left: -0.7rem;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .toc-sub .toc-link { font-size: 0.85rem; }
+  .toc-link:hover { color: var(--accent-deep); }
+  .toc-link.is-active {
+    color: var(--accent-deep);
+    border-left-color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ---- Sources ---- */
+  .sources {
+    max-width: var(--container-narrow);
+    margin-top: 3rem;
+    padding: 1.2rem 1.4rem;
+    border-top: 2px solid var(--border);
+    color: var(--text-faint);
+    font-size: 0.85rem;
+  }
+  .sources-title { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .sources ul { padding-left: 1.2rem; }
+  .sources a { color: var(--text-muted); }
+
+  /* ---- Desktop: TOC becomes a quiet sticky sidebar on the right ---- */
+  @media (min-width: 64rem) {
+    .section-layout {
+      grid-template-columns: minmax(0, 1fr) 13.5rem;
+      align-items: start;
+    }
+    .section-body { grid-column: 1; grid-row: 1; }
+    .toc {
+      grid-column: 2;
+      grid-row: 1;
+      position: sticky;
+      top: 5rem;
+      background: none;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .toc-toggle { display: none; }
+    .toc-nav { display: block; padding: 0; }
+    .toc-heading { display: block; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var root = document.querySelector('[data-section-toc]');
+    if (!root) return;
+
+    var toggle = root.querySelector('.toc-toggle');
+    var nav = root.querySelector('.toc-nav');
+    var mobile = window.matchMedia('(max-width: 63.99rem)');
+
+    if (toggle && nav) {
+      toggle.addEventListener('click', function () {
+        var open = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        nav.classList.toggle('open', !open);
+      });
+      nav.addEventListener('click', function (e) {
+        if (e.target.closest('a') && mobile.matches) {
+          toggle.setAttribute('aria-expanded', 'false');
+          nav.classList.remove('open');
+        }
+      });
+    }
+
+    // Scroll-spy: highlight the TOC link for the section nearest the top.
+    var links = nav ? Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]')) : [];
+    var byId = {};
+    var targets = [];
+    links.forEach(function (a) {
+      var id = decodeURIComponent(a.getAttribute('href').slice(1));
+      var el = document.getElementById(id);
+      if (el) {
+        byId[id] = a;
+        targets.push(el);
+      }
+    });
+    if (!('IntersectionObserver' in window) || targets.length === 0) return;
+
+    var visible = {};
+    function refresh() {
+      // `targets` is in document order, so the most specific section currently
+      // in the spy band is simply the last visible one. (Picking the smallest
+      // bounding-rect top would let a wrapping <section> hog the active state
+      // and never surface its own sub-headings.)
+      var current = null;
+      targets.forEach(function (el) {
+        if (visible[el.id]) current = el.id;
+      });
+      links.forEach(function (a) {
+        a.classList.remove('is-active');
+        a.removeAttribute('aria-current');
+      });
+      if (current && byId[current]) {
+        byId[current].classList.add('is-active');
+        byId[current].setAttribute('aria-current', 'true');
+      }
+    }
+
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) visible[en.target.id] = true;
+          else delete visible[en.target.id];
+        });
+        refresh();
+      },
+      { rootMargin: '-25% 0px -60% 0px', threshold: 0 },
+    );
+    targets.forEach(function (el) {
+      io.observe(el);
+    });
+  })();
+</script>

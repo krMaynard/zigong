@@ -29,9 +29,9 @@ export const htmlLang: Record<Locale, string> = {
 export const routes = {
   home: '',
   heritage: 'heritage',
-  culture: 'lantern-festival',
-  industry: 'tech',
-  everyday: 'kids',
+  culture: 'culture',
+  industry: 'industry',
+  everyday: 'everyday',
   people: 'businesses',
   about: 'about',
 } as const;
@@ -47,6 +47,7 @@ export type UI = {
   'nav.people': string;
   'nav.about': string;
   'nav.menu': string;
+  'toc.title': string;
   'lang.label': string;
   'theme.toggle': string;
   'skip.main': string;
@@ -69,6 +70,7 @@ export const ui: Record<Locale, UI> = {
     'nav.people': '店家与街巷',
     'nav.about': '关于',
     'nav.menu': '菜单',
+    'toc.title': '本页目录',
     'lang.label': '语言',
     'theme.toggle': '切换深色模式',
     'skip.main': '跳转到正文',
@@ -91,6 +93,7 @@ export const ui: Record<Locale, UI> = {
     'nav.people': 'People & places',
     'nav.about': 'About',
     'nav.menu': 'Menu',
+    'toc.title': 'On this page',
     'lang.label': 'Language',
     'theme.toggle': 'Toggle dark mode',
     'skip.main': 'Skip to main content',
@@ -113,6 +116,7 @@ export const ui: Record<Locale, UI> = {
     'nav.people': '店と街の人',
     'nav.about': 'このサイトについて',
     'nav.menu': 'メニュー',
+    'toc.title': 'このページの目次',
     'lang.label': '言語',
     'theme.toggle': 'ダークモード切り替え',
     'skip.main': '本文へスキップ',
@@ -135,6 +139,7 @@ export const ui: Record<Locale, UI> = {
     'nav.people': '가게와 거리',
     'nav.about': '소개',
     'nav.menu': '메뉴',
+    'toc.title': '이 페이지 내용',
     'lang.label': '언어',
     'theme.toggle': '다크 모드 전환',
     'skip.main': '본문으로 건너뛰기',
