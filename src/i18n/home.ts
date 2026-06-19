@@ -34,7 +34,7 @@ export const home: Record<Locale, HomeContent> = {
     ],
   },
   en: {
-    lead: 'Beyond salt, dinosaurs, and lanterns: a southern-Sichuan (四川) city still at work and at home.',
+    lead: 'Beyond salt, dinosaurs, and lanterns: a southern-Sichuan city still at work and at home.',
     leadCaption: 'Zigong (自贡) from above — the city reaching toward the hills and the distant works.',
     overview: [
       'Zigong is usually summed up in a phrase — “salt capital,” “home of dinosaurs,” “city of lanterns.” Each label is true, and each is too light. A city is never its slogans; it is the depth of a brine well, the rhythm of a workshop floor, the steam rising from a noodle shop at dawn, and the people who live among all of it.',
@@ -68,7 +68,7 @@ export const home: Record<Locale, HomeContent> = {
     ],
   },
   ko: {
-    lead: '소금·공룡·등불 너머, 여전히 일하고 살아가는 쓰촨(四川) 남부의 도시.',
+    lead: '소금·공룡·등불 너머, 여전히 일하고 살아가는 쓰촨 남부의 도시.',
     leadCaption: '높은 곳에서 본 쯔궁(自贡) — 시가지가 멀리 구릉과 공장 지대로 이어진다.',
     overview: [
       '쯔궁은 흔히 한마디로 요약된다 — “소금의 도시”, “공룡의 고향”, “등불의 도시”. 모두 사실이지만, 모두 너무 가볍다. 도시는 구호가 아니다. 그것은 소금 우물의 깊이이고, 작업장 바닥에 흐르는 리듬이며, 새벽 국숫집에서 피어오르는 김이고, 그 모든 것 속에서 살아가는 사람들이다.',
