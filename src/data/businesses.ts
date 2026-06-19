@@ -111,13 +111,13 @@ export const businesses: Business[] = [
       en: 'Guoguojiu Camping Hotpot (锅锅九露营火锅)',
       zh: '锅锅九露营火锅',
       ja: '鍋鍋九キャンプ火鍋（锅锅九露营火锅）',
-      ko: '궈궈주 캠핑 훠궈(锅锅九露营火锅)',
+      ko: '궈궈지우 캠핑 훠궈(锅锅九露营火锅)',
     },
     blurb: {
       en: 'A camping-themed hotpot restaurant — tents, greenery, and an outdoorsy mood brought indoors — known for its probiotic twin-broth pot, with sides like crispy pork, shrimp-and-roe paste, and matsutake wontons. A Sichuan hotpot night with a “glamping” twist.',
       zh: '一家“露营风”的火锅店，把帐篷、绿植与户外氛围搬进店里，主打乳酸菌鸳鸯锅底，配龙须酥肉、鱼籽虾滑、松茸抄手等——在城里吃一顿“野”味十足的川式火锅。',
       ja: 'キャンプ風の火鍋店。テントや観葉植物でアウトドアの雰囲気を店内に持ち込み、乳酸菌の鴛鴦（二色）鍋を看板に、酥肉（揚げ豚）や海老のすり身、松茸ワンタンなどを合わせる——街なかで楽しむ「グランピング」流の四川火鍋。',
-      ko: '캠핑 콘셉트의 훠궈집 — 텐트와 화초로 야외 분위기를 실내에 들였다. 유산균 원앙(이색) 육수를 간판으로, 바삭 돼지고기·새우알 새우살·송이 훈툰 등을 곁들인다. 도심에서 즐기는 ‘글램핑’ 풍 쓰촨 훠궈.',
+      ko: '캠핑 콘셉트의 훠궈집 — 텐트와 화초로 야외 분위기를 실내에 들였다. 유산균 원앙(이색) 육수를 간판으로, 바삭한 돼지고기 튀김·날치알 새우완자·송이 만두 등을 곁들인다. 도심에서 즐기는 ‘글램핑’ 풍 쓰촨 훠궈.',
     },
   },
   {
@@ -141,7 +141,7 @@ export const businesses: Business[] = [
       en: 'Part of Zigong’s Nanhu Sports & Culture Center, built to host the Sichuan Provincial Games. As the city has become a regular host of national- and international-level events, this is one of the places to watch — or play — tennis.',
       zh: '川南国际网球中心是自贡南湖体育文化中心的一部分，为承办四川省运会而建。近年自贡频频承办全国乃至国际级赛事，这里正是看球、打球的去处之一。',
       ja: '自貢の南湖体育文化センターの一部で、四川省運動会の開催のために建てられた。近年、自貢は全国・国際級の大会を相次いで誘致しており、ここはその観戦・プレーの拠点の一つだ。',
-      ko: '쯔궁 난후 체육문화센터의 일부로, 쓰촨성 체전을 치르기 위해 지어졌다. 최근 쯔궁이 전국·국제급 대회를 잇따라 유치하면서, 이곳은 테니스를 보고 또 치는 장소 가운데 하나가 되었다.',
+      ko: '쯔궁 난후 체육문화센터의 일부로, 쓰촨성 체전을 치르기 위해 지어졌다. 최근 쯔궁이 전국·국제급 대회를 잇따라 유치하면서, 이곳은 테니스를 관람하거나 직접 즐기기 좋은 장소 중 하나가 되었다.',
     },
   },
 ];
