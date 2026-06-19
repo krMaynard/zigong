@@ -40,6 +40,28 @@ lead version.
 - Translations should read **naturally in each language**, never mirror word-for-
   word. Chinese is the authoritative native text the others follow.
 
+## Gloss Chinese terms with hanzi in the non-Chinese pages
+
+In the **en / ja / ko** pages (never zh — it is the authoritative source of the
+characters), the **first mention on each page** of any China-specific proper noun
+— places, people, institutions/companies, named dishes, cultural works/phrases —
+must carry a gloss:
+
+- **English & Korean:** append the **simplified** Chinese characters in parentheses
+  — `Xiqin Guildhall (西秦会馆)`, `시친 회관(西秦会馆)`. If an italic pinyin gloss is
+  already present, combine it: `Salt-Gang cuisine (盐帮菜, *yánbāng cài*)`.
+- **Japanese:** the names are already in kanji, so instead add the **onyomi reading**
+  in full-width parentheses where the kanji are likely hard to read —
+  `燊海井（しんかいせい）`, `王和甫（おう・わほ）` (use ・ between surname and given
+  name). Skip common/easy kanji (塩, 四川, 春節…). For a name written with a
+  non-Japanese character (e.g. a brand like 卡通尼), render it naturally in
+  katakana and put the Chinese in parens — `カートゥーニー（卡通尼）`.
+- **First mention only**, judged independently per file; leave later repeats
+  unglossed. **Body text + visible `<figcaption>` only** — never front-matter
+  (title/description/sources) or image `alt`.
+- Avoid nested/adjacent parentheses: if a gloss meets an existing parenthetical,
+  merge with `;`/`,` rather than stacking `()()` or `(…(…))`.
+
 ## Structure (themes)
 
 The site is organized into **themes**, not tourist pillars: **Overview** (home),
@@ -72,6 +94,21 @@ Everyday→`kids`) pending dedicated section pages + deeper rewrites. There is *
   source renders as a working link to the original.
 - Before changing factual claims (festival dates, well depths, museum details),
   verify against a current source — don't assert from memory.
+
+## Photos — blur faces before posting
+
+Photography is the author's own. **Before adding any photo to the site, blur (or
+pixelate) every recognisable human face in it** — visitors, bystanders, children,
+anyone. This applies to **all photos, without exception**, for privacy. Faces can
+be located with the YuNet detector (`cv2.FaceDetectorYN`, model
+`face_detection_yunet…onnx`); YuNet may miss faces that are turned away or
+occluded, so also scan the photo by eye and cover those heads manually. Obscure
+each head with a heavy mosaic + blur and **verify by eye that no face remains
+recognisable** before committing. Optimise as usual (resize ~1300–2000px wide,
+mozjpeg q78) and store under `public/images/<theme>/`. Captions: credit as the
+author's own and name the **exact place and year** (e.g. `(Zigong; author's
+photo, 2026)`). Never commit scratch/processing files (`_*.cjs`, models, temp
+crops) — keep them out of the repo.
 
 ## Disclaimer
 
