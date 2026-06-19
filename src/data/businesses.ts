@@ -93,7 +93,7 @@ export const businesses: Business[] = [
       en: 'A snack stall in the Colorful Market food hall inside Huashang International City: hand-rolled Sichuan spring rolls (about 10 yuan a box), plus grilled and meat sausages on a stick — a quick, cheap bite while you’re at the mall.',
       zh: '华商·国际城“华彩市集”里的一处小吃摊：现包的川式春卷（约 10 元一盒），还有烤肠、肉肠——逛商场时一份便宜实惠的随手小吃。',
       ja: '華商・国際城の「華彩市集」にある軽食の屋台。手づくりの四川風春巻き（一箱およそ10元）に、焼きソーセージや肉ソーセージ——モール散策のついでに楽しめる安い一口です。',
-      ko: '화상·궈지청 ‘화차이 시장(华彩市集)’ 안의 간식 노점: 직접 만 쓰촨식 춘권(한 박스 약 10위안)과 구운 소시지·고기 소시지 — 쇼핑하다 들르기 좋은 싸고 간단한 한 입.',
+      ko: '화상·궈지청 ‘화차이 시장(华彩市集)’ 안의 간식 노점: 직접 만든 쓰촨식 춘권(한 박스 약 10위안)과 구운 소시지·고기 소시지 — 쇼핑하다 들르기 좋은 싸고 간단한 한 입.',
     },
   },
 ];
