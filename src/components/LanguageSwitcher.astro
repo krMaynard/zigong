@@ -19,7 +19,7 @@ const options = locales.map((l) => ({
 
 <details class="lang-switcher">
   <summary aria-label={t('lang.label')}>
-    <span class="lang-icon" aria-hidden="true">文A</span>
+    <span class="lang-icon" aria-hidden="true" translate="no">文A</span>
     <span class="lang-current">{languageNames[locale]}</span>
   </summary>
   <ul role="list">
@@ -52,7 +52,10 @@ const options = locales.map((l) => ({
   }
   .lang-switcher > summary::-webkit-details-marker { display: none; }
   .lang-switcher > summary:hover { color: var(--accent-deep); border-color: var(--accent); }
-  .lang-icon { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.03em; line-height: 1; }
+  /* Sans stack so 文 and A stay visually consistent even on locales that don't
+     load a CJK serif (e.g. /en/), where 文 would otherwise fall back to a
+     mismatched system serif. */
+  .lang-icon { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.03em; line-height: 1; }
 
   .lang-switcher ul {
     position: absolute;
