@@ -66,10 +66,10 @@ export const businesses: Business[] = [
       ko: '싱쿵 야구 스포츠관',
     },
     blurb: {
-      en: 'An indoor baseball center with batting nets, cages, and tees — an active, family-friendly outing, and home base for the local "Shenlong" team.',
-      zh: '一家室内棒球运动馆，配有击球网、打击笼与打击架——是适合全家的活力去处，也是本地“燊龙队”的主场。',
-      ja: '打撃ネット・ケージ・ティーを備えた屋内野球施設。家族で楽しめるアクティブなお出かけ先で、地元「燊龍」チームの本拠地でもあります。',
-      ko: '타격 네트와 케이지, 티를 갖춘 실내 야구 센터 — 온 가족이 활기차게 즐길 나들이 장소이자 지역 “선룽” 팀의 홈입니다.',
+      en: 'An indoor baseball center with batting nets, cages, and tees — an active, family-friendly outing.',
+      zh: '一家室内棒球运动馆，配有击球网、打击笼与打击架——是适合全家的活力去处。',
+      ja: '打撃ネット・ケージ・ティーを備えた屋内野球施設。家族で楽しめるアクティブなお出かけ先です。',
+      ko: '타격 네트와 케이지, 티를 갖춘 실내 야구 센터 — 온 가족이 활기차게 즐길 나들이 장소입니다.',
     },
   },
   {
